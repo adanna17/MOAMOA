@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingTop="100dp"
+    android:background="#2A2A2A"
+    tools:context="kr.co.mashup.moamoa.MoaSignupActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_back_signup"
+        android:text="LOGOUT"/>
+
+    <kr.co.mashup.moamoa.KakaoProfileInformation
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/com_kakao_profileinformation"/>
+
+    <EditText
+        android:id="@+id/edit_signup_username"
+        style="@style/MoaMoa_EditText"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/text_username_alert"
+        style="@style/MoaMoa_TextView_name_alert"
+        android:text="이름은 필수로 입력해야 합니다!"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/btn_user_signup"
+        style="@style/MoaMoa_Button"
+        android:text="가입하기"
+        android:layout_marginTop="25dp"/>
+
+
+</LinearLayout>

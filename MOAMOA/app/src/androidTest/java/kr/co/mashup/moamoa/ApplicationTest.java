@@ -1,4 +1,4 @@
-package kr.ac.mash_up.moamoa;
+package kr.co.mashup.moamoa;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

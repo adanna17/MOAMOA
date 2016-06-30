@@ -1,4 +1,4 @@
-package kr.ac.mash_up.moamoa;
+package kr.co.mashup.moamoa;
 
 import org.junit.Test;
 

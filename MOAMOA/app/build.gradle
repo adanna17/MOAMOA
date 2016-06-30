@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "kr.ac.mash_up.moamoa"
+        applicationId "kr.co.mashup.moamoa"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
@@ -23,5 +23,17 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+
+    // Annotation Processing
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    // ImageLoader
+    compile 'com.facebook.fresco:fresco:0.8.1'
+
+    // Kakao
+    compile group: project.KAKAO_SDK_GROUP, name: 'kakaolink', version: project.KAKAO_SDK_VERSION
+    compile group: project.KAKAO_SDK_GROUP, name: 'kakaotalk', version: project.KAKAO_SDK_VERSION
+
+    // Material Dialog
+    compile 'com.afollestad.material-dialogs:core:0.8.6.1'
 }
