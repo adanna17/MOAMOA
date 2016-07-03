@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa;
+package kr.co.mashup.moamoa.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,10 @@ import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.helper.log.Logger;
+
+import kr.co.mashup.moamoa.ui.home.MoaHomeActivity;
+import kr.co.mashup.moamoa.ui.signup.MoaSignupActivity;
+import kr.co.mashup.moamoa.R;
 
 public class KakaoSessionCheck extends AppCompatActivity{
 
@@ -68,7 +72,7 @@ public class KakaoSessionCheck extends AppCompatActivity{
     }
 
     private void redirectSignupActivity() {
-        startActivity(new Intent(this, MoaSignupActivity.class));
+        startActivity(new Intent(this, MoaHomeActivity.class));
         finish();
     }
 

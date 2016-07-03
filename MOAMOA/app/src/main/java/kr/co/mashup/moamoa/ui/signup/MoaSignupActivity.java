@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa;
+package kr.co.mashup.moamoa.ui.signup;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,6 +18,9 @@ import com.kakao.usermgmt.response.model.UserProfile;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kr.co.mashup.moamoa.KakaoProfileInformation;
+import kr.co.mashup.moamoa.R;
+import kr.co.mashup.moamoa.ui.login.KakaoLoginActivity;
 
 public class MoaSignupActivity extends AppCompatActivity {
 

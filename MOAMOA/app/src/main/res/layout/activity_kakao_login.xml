@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#2A2A2A"
-    tools:context="kr.co.mashup.moamoa.KakaoLoginActivity">
+    tools:context=".ui.login.KakaoLoginActivity">
 
     <LinearLayout
         android:layout_weight="1"

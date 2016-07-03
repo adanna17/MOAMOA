@@ -1,8 +1,11 @@
-package kr.co.mashup.moamoa;
+package kr.co.mashup.moamoa.ui.splash;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import kr.co.mashup.moamoa.ui.login.KakaoLoginActivity;
+import kr.co.mashup.moamoa.R;
 
 public class SplashActivity extends AppCompatActivity {
 

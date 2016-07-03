@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa;
+package kr.co.mashup.moamoa.ui.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.log.Logger;
+
+import kr.co.mashup.moamoa.R;
 
 public class KakaoLoginActivity extends AppCompatActivity {
 

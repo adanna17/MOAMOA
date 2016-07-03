@@ -8,7 +8,7 @@
     android:paddingRight="60dp"
     android:paddingTop="100dp"
     android:background="#2A2A2A"
-    tools:context="kr.co.mashup.moamoa.MoaSignupActivity">
+    tools:context=".ui.signup.MoaSignupActivity">
 
     <Button
         android:layout_width="wrap_content"
