@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.swipe.util.Attributes;
+
 import butterknife.BindColor;
 import butterknife.BindDimen;
 import butterknife.BindView;
@@ -30,6 +32,12 @@ public class MoaHomeFragment extends Fragment {
 
     @BindDimen(R.dimen.moa_list_margin)
     int itemSpacingSize;
+
+    @BindDimen(R.dimen.moa_list_first_margin)
+    int itemFirstSpacingSize;
+
+    @BindDimen(R.dimen.bottom_navigation_height)
+    int itemLastSpacingSize;
 
     @BindColor(R.color.moa_gradient_start)
     int refresh_start_color;
@@ -58,7 +66,7 @@ public class MoaHomeFragment extends Fragment {
         adapter = new ContentAdapter(getActivity().getApplicationContext(), refreshLayout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new SpacingItemDecoration(itemSpacingSize));
+        recyclerView.addItemDecoration(new SpacingItemDecoration(itemSpacingSize,itemFirstSpacingSize,itemLastSpacingSize));
     }
 
 }

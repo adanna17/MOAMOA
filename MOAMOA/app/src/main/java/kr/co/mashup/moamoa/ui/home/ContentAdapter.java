@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.daimajia.swipe.SwipeLayout;
+import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.mashup.moamoa.R;
 
-public class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
+public class ContentAdapter extends RecyclerSwipeAdapter<ContentViewHolder> {
 
     private Context mContext;
     private List<ContentData> mDataset;
@@ -46,7 +49,31 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ContentViewHolder holder, int position) {
+    public void onBindViewHolder(final ContentViewHolder holder, final int position) {
+
+        holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+        holder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right,
+                holder.swipeLayout.findViewById(R.id.content_swipe_menu));
+
+        holder.content_menu_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mItemManger.removeShownLayouts(holder.swipeLayout);
+                mDataset.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, mDataset.size());
+                mItemManger.closeAllItems();
+                Toast.makeText(mContext, "Deleted " , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "item 선택", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         holder.update(mDataset.get(position));
         refreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -54,12 +81,15 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
                 refresh();
             }
         });
+
+        mItemManger.bindView(holder.itemView, position);
     }
 
     @Override
     public int getItemCount() {
         return mDataset.size();
     }
+
 
     private void refresh() {
         new Handler().postDelayed(new Runnable() {
@@ -71,5 +101,11 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
                 refreshlayout.setRefreshing(false);
             }
         }, 1000);
+    }
+
+
+    @Override
+    public int getSwipeLayoutResourceId(int position) {
+        return R.id.swipe_item;
     }
 }

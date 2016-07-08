@@ -1,17 +1,23 @@
 package kr.co.mashup.moamoa.ui.main;
 
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 
 import java.util.ArrayList;
 
 import butterknife.BindColor;
+import butterknife.BindDrawable;
+import butterknife.BindInt;
 import butterknife.ButterKnife;
 import kr.co.mashup.moamoa.common.PagerAdapter;
 import kr.co.mashup.moamoa.R;
@@ -63,7 +69,9 @@ public class MoaMainActivity extends AppCompatActivity {
 
         bottomNavigation.addItems(bottomNavigationItems);
 
+        bottomNavigation.setBehaviorTranslationEnabled(false);
         bottomNavigation.setForceTitlesDisplay(true);
+        bottomNavigation.setTitleTextSize(45, 40);
         bottomNavigation.setAccentColor(accentcolor);
         bottomNavigation.setInactiveColor(inactivecolor);
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
