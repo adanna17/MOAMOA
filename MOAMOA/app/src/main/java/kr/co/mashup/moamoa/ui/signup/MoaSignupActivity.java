@@ -15,10 +15,10 @@ import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import kr.co.mashup.moamoa.KakaoProfileInformation;
+import kr.co.mashup.moamoa.common.KakaoProfileInformation;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.ui.login.KakaoLoginActivity;
 
@@ -26,10 +26,10 @@ public class MoaSignupActivity extends AppCompatActivity {
 
     private UserProfile userProfile;
 
-    @Bind(R.id.edit_signup_username)
+    @BindView(R.id.edit_signup_username)
     EditText editText_username;
 
-    @Bind(R.id.com_kakao_profileinformation)
+    @BindView(R.id.com_kakao_profileinformation)
     KakaoProfileInformation profileInformation;
 
     @OnClick(R.id.btn_back_signup)

@@ -15,8 +15,7 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.helper.log.Logger;
 
-import kr.co.mashup.moamoa.ui.home.MoaHomeActivity;
-import kr.co.mashup.moamoa.ui.signup.MoaSignupActivity;
+import kr.co.mashup.moamoa.ui.main.MoaMainActivity;
 import kr.co.mashup.moamoa.R;
 
 public class KakaoSessionCheck extends AppCompatActivity{
@@ -72,7 +71,7 @@ public class KakaoSessionCheck extends AppCompatActivity{
     }
 
     private void redirectSignupActivity() {
-        startActivity(new Intent(this, MoaHomeActivity.class));
+        startActivity(new Intent(this, MoaMainActivity.class));
         finish();
     }
 
@@ -80,7 +79,7 @@ public class KakaoSessionCheck extends AppCompatActivity{
         new MaterialDialog.Builder(this)
                 .content("로그인에 실패하였습니다.")
                 .positiveText("확인")
-                .positiveColorRes(R.color.colorPrimaryDark)
+                .positiveColorRes(R.color.moa_blue)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {

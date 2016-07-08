@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="MOAMOA"
                 android:textSize="23sp"
-                android:textColor="@color/moa_colorPrimaryDark"
+                android:textColor="@color/moa_blue"
                 android:gravity="center"/>
 
         </FrameLayout>

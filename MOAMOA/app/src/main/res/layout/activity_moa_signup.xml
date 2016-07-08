@@ -16,7 +16,7 @@
         android:id="@+id/btn_back_signup"
         android:text="LOGOUT"/>
 
-    <kr.co.mashup.moamoa.KakaoProfileInformation
+    <kr.co.mashup.moamoa.common.KakaoProfileInformation
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/com_kakao_profileinformation"/>

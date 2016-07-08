@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-
-    <color name="moa_colorPrimary">#85DCE6</color>
-    <color name="moa_colorPrimaryDark">#20AFF4</color>
+    <color name="moa_blue">#5fa9ee</color>
     <color name="moa_background_gray">#D8D8D8</color>
+    <color name="moa_gradient_start">#75e0d1</color>
+    <color name="moa_gradient_end">#8ed9f4</color>
+    <color name="moa_white">#f9f9f9</color>
+
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+
     <color name="opacity_white">#4Dffffff</color>
     <color name="skyblue">#89b8c8</color>
     <color name="blue">#3e9bb4</color>

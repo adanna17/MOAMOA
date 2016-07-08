@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa;
+package kr.co.mashup.moamoa.common;
 
 
 import android.app.Application;
@@ -12,6 +12,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
+
+import kr.co.mashup.moamoa.R;
 
 public class KakaoProfileInformation extends FrameLayout {
 

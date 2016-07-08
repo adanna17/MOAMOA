@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa;
+package kr.co.mashup.moamoa.common;
 
 import android.app.Activity;
 import android.app.Application;
