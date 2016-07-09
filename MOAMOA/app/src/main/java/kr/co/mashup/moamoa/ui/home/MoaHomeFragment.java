@@ -36,9 +36,6 @@ public class MoaHomeFragment extends Fragment {
     @BindDimen(R.dimen.moa_list_first_margin)
     int itemFirstSpacingSize;
 
-    @BindDimen(R.dimen.bottom_navigation_height)
-    int itemLastSpacingSize;
-
     @BindColor(R.color.moa_gradient_start)
     int refresh_start_color;
 
@@ -66,7 +63,7 @@ public class MoaHomeFragment extends Fragment {
         adapter = new ContentAdapter(getActivity().getApplicationContext(), refreshLayout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new SpacingItemDecoration(itemSpacingSize,itemFirstSpacingSize,itemLastSpacingSize));
+        recyclerView.addItemDecoration(new SpacingItemDecoration(itemSpacingSize,itemFirstSpacingSize));
     }
 
 }

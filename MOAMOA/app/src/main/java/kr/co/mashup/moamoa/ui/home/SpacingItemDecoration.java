@@ -8,14 +8,11 @@ public class SpacingItemDecoration extends RecyclerView.ItemDecoration{
 
     private final int spacingSize;
     private final int spacingFirstSize;
-    private final int spacingLastSize;
 
-    public SpacingItemDecoration(int spacingSize, int spacingFirstSize, int spacingLastSize) {
+    public SpacingItemDecoration(int spacingSize, int spacingFirstSize) {
         this.spacingSize = spacingSize;
         this.spacingFirstSize = spacingFirstSize;
-        this.spacingLastSize = spacingLastSize;
     }
-
 
     @Override
     public void getItemOffsets(Rect outRect,  //viewholder에 바인딩된 사각형을 받아옴
@@ -31,7 +28,7 @@ public class SpacingItemDecoration extends RecyclerView.ItemDecoration{
         if (currentPosition == 0 ){
             outRect.top = spacingFirstSize; //actionbar에 가려지는 첫번째 아이템에만 위에 여백을 줌!
         } else if(currentPosition == state.getItemCount()-1){
-            outRect.bottom = spacingLastSize;
+            outRect.bottom = spacingSize;
         }
 
     }
