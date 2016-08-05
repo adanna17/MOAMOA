@@ -59,12 +59,16 @@ public class RetrofitSingleton {
         return logging;
     }
 
-    public Call<User> getUserInfo(String kakaoID, String profileImage, String moamoaId, String nickname){
-        return service.userInfo(kakaoID, profileImage, moamoaId, nickname);
+    public Call<ServerResult> getUserRepeat(String moamoaId){
+        return service.userRepeat(moamoaId);
     }
 
     public Call<ServerResult> getCheckUser(String kakaoID){
         return service.checkUser(kakaoID);
+    }
+
+    public  Call<ServerResult> getRegisterUser(String kakaoID, String kakaoProfileImage, String moaId, String moaNickname){
+        return service.registerUser(kakaoID,kakaoProfileImage, moaId, moaNickname);
     }
 
 }

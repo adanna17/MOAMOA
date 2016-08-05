@@ -9,14 +9,18 @@ public interface RetrofitService {
 
     @FormUrlEncoded
     @POST("register/repeat")
-    Call<User> userInfo(
-            @Field("kakaoId") String kakaoID,
-            @Field("profileImage") String profileImage,
-            @Field("moamoaId") String moamoaId,
-            @Field("nickname") String nickname);
+    Call<ServerResult> userRepeat(@Field("moamoaId") String moamoaId);
 
     @FormUrlEncoded
     @POST("login")
     Call<ServerResult> checkUser(@Field("kakaoId") String kakaoID);
+
+    @FormUrlEncoded
+    @POST("register/submit")
+    Call<ServerResult> registerUser(
+            @Field("kakaoId") String kakaoID,
+            @Field("kakaoProfileImage") String kakaoProfileImage,
+            @Field("moaId") String moaId,
+            @Field("moaNickname") String moaNickname);
 
 }

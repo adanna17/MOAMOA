@@ -3,8 +3,8 @@ package kr.co.mashup.moamoa.server;
 public class ServerResult {
     private boolean bResult;
 
-    public ServerResult(boolean mResult) {
-        this.bResult = mResult;
+    public ServerResult(boolean bResult) {
+        this.bResult = bResult;
     }
 
     public boolean getmResult() {

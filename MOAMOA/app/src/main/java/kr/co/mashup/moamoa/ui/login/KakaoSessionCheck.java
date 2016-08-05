@@ -74,7 +74,6 @@ public class KakaoSessionCheck extends AppCompatActivity{
                 call.enqueue(new Callback<ServerResult>() {
                     @Override
                     public void onResponse(Call<ServerResult> call, Response<ServerResult> response) {
-                        Log.v(TAG,String.valueOf(response.body().getmResult()));
                         if (response.body().getmResult()){
                             redirectMainActivity();
                         }else{
