@@ -1,42 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="60dp"
-    android:paddingRight="60dp"
-    android:paddingTop="100dp"
-    android:background="#2A2A2A"
-    tools:context=".ui.signup.MoaSignupActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.signup.MoaSignupActivity"
+    android:background="@color/moa_white">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_back_signup"
-        android:text="LOGOUT"/>
-
-    <kr.co.mashup.moamoa.common.KakaoProfileInformation
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/com_kakao_profileinformation"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="33dp"
+        android:paddingRight="33dp"
+        android:paddingTop="80dp"
+        android:paddingBottom="24dp">
 
-    <EditText
-        android:id="@+id/edit_signup_username"
-        style="@style/MoaMoa_EditText"
-        android:layout_marginTop="40dp" />
+        <ImageView
+            android:layout_width="173dp"
+            android:layout_height="29dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/moa_text"/>
 
-    <TextView
-        android:id="@+id/text_username_alert"
-        style="@style/MoaMoa_TextView_name_alert"
-        android:text="이름은 필수로 입력해야 합니다!"
-        android:layout_marginTop="5dp"/>
+        <kr.co.mashup.moamoa.common.KakaoProfileInformation
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:id="@+id/com_kakao_profileinformation"/>
 
-    <Button
-        android:id="@+id/btn_user_signup"
-        style="@style/MoaMoa_Button"
-        android:text="가입하기"
-        android:layout_marginTop="25dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/moa_blue_underline"
+            android:padding="8dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이디"
+                android:textColor="@color/moa_text_main"
+                android:layout_weight="1"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/edit_signup_moaid"
+                android:maxLength="10"
+                style="@style/MoaMoa_EditText"
+                android:hint="@string/moa_signup_id_hint"
+                android:layout_weight="20" />
 
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중복확인"
+                android:id="@+id/btn_signup_repeat"
+                android:textColor="@color/moa_line_button"
+                android:layout_weight="1"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/moa_text_description"
+            android:text="(영문, 숫자로 된 4~10자)"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/moa_text_description"
+            android:text="친구가 회원님을 찾을 때 사용되는 아이디입니다."/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/moa_blue_underline"
+            android:padding="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="125dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닉네임"
+                android:textColor="@color/moa_text_main"
+                android:layout_weight="1"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/edit_signup_username"
+                style="@style/MoaMoa_EditText"
+                android:maxLength="10"
+                android:hint="@string/moa_signup_nickname_hint"
+                android:layout_weight="20" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:id="@+id/btn_signup_finish"
+            android:background="@drawable/btn_moa_signup" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

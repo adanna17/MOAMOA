@@ -14,7 +14,8 @@ import kr.co.mashup.moamoa.R;
 
 public class KakaoLoginActivity extends AppCompatActivity {
 
-    private SessionCallback callback;
+    public static final String TAG = KakaoLoginActivity.class.getSimpleName();
+    private SessionCallback mSessionCallback;
 
     /**
      * 로그인 버튼을 클릭 했을시 access token을 요청하도록 설정한다.
@@ -25,8 +26,8 @@ public class KakaoLoginActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        callback = new SessionCallback();
-        Session.getCurrentSession().addCallback(callback);
+        mSessionCallback = new SessionCallback();
+        Session.getCurrentSession().addCallback(mSessionCallback);
         if (!Session.getCurrentSession().checkAndImplicitOpen()) {
             setContentView(R.layout.activity_kakao_login);
         }
@@ -44,16 +45,15 @@ public class KakaoLoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Session.getCurrentSession().removeCallback(callback);
+        Session.getCurrentSession().removeCallback(mSessionCallback);
     }
 
     private class SessionCallback implements ISessionCallback {
 
         @Override
         public void onSessionOpened() {
-            Log.v("로그인 SESSION", "오픈 되었습니다!!");
+            Log.v(TAG, "SessionOpen");
             final Intent intent = new Intent(getApplicationContext(), KakaoSessionCheck.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();
         }
@@ -63,7 +63,6 @@ public class KakaoLoginActivity extends AppCompatActivity {
             if(exception != null) {
                 Logger.e(exception);
             }
-
             setContentView(R.layout.activity_kakao_login);
         }
     }

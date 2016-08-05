@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa.ui.setting;
+package kr.co.mashup.moamoa.ui.profile;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import kr.co.mashup.moamoa.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MoaSettingFragment extends Fragment {
+public class MoaProfileFragment extends Fragment {
 
 
-    public MoaSettingFragment() {
+    public MoaProfileFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class MoaSettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_moa_setting, container, false);
+        return inflater.inflate(R.layout.fragment_moa_profile, container, false);
     }
 
 }

@@ -21,10 +21,11 @@ import butterknife.BindInt;
 import butterknife.ButterKnife;
 import kr.co.mashup.moamoa.common.PagerAdapter;
 import kr.co.mashup.moamoa.R;
-import kr.co.mashup.moamoa.ui.category.MoaCategoryFragment;
+import kr.co.mashup.moamoa.ui.group.MoaGroupFragment;
 import kr.co.mashup.moamoa.ui.home.MoaHomeFragment;
-import kr.co.mashup.moamoa.ui.setting.MoaSettingFragment;
+import kr.co.mashup.moamoa.ui.profile.MoaProfileFragment;
 import kr.co.mashup.moamoa.ui.story.MoaStoryFragment;
+import kr.co.mashup.moamoa.ui.tag.MoaTagFragment;
 
 public class MoaMainActivity extends AppCompatActivity {
 
@@ -58,20 +59,22 @@ public class MoaMainActivity extends AppCompatActivity {
         viewPager = (AHBottomNavigationViewPager) findViewById(R.id.view_pager);
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("홈", R.drawable.icon_home);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("카테고리", R.drawable.icon_category);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("스토리", R.drawable.icon_story);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("설정", R.drawable.icon_setting);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("그룹", R.drawable.icon_group);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("태그", R.drawable.icon_tag);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem("스토리", R.drawable.icon_story);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem("프로필", R.drawable.icon_profile);
 
         bottomNavigationItems.add(item1);
         bottomNavigationItems.add(item2);
         bottomNavigationItems.add(item3);
         bottomNavigationItems.add(item4);
+        bottomNavigationItems.add(item5);
 
         bottomNavigation.addItems(bottomNavigationItems);
 
         bottomNavigation.setBehaviorTranslationEnabled(false);
         bottomNavigation.setForceTitlesDisplay(true);
-        bottomNavigation.setTitleTextSize(45, 40);
+        bottomNavigation.setTitleTextSize(40, 40);
         bottomNavigation.setAccentColor(accentcolor);
         bottomNavigation.setInactiveColor(inactivecolor);
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
@@ -84,9 +87,10 @@ public class MoaMainActivity extends AppCompatActivity {
 
         adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MoaHomeFragment());
-        adapter.addFragment(new MoaCategoryFragment());
+        adapter.addFragment(new MoaGroupFragment());
+        adapter.addFragment(new MoaTagFragment());
         adapter.addFragment(new MoaStoryFragment());
-        adapter.addFragment(new MoaSettingFragment());
+        adapter.addFragment(new MoaProfileFragment());
         viewPager.setAdapter(adapter);
 
     }

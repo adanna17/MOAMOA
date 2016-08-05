@@ -15,10 +15,19 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.helper.log.Logger;
 
-import kr.co.mashup.moamoa.ui.main.MoaMainActivity;
+import kr.co.mashup.moamoa.server.RetrofitSingleton;
+import kr.co.mashup.moamoa.server.ServerResult;
 import kr.co.mashup.moamoa.R;
+import kr.co.mashup.moamoa.ui.main.MoaMainActivity;
+import kr.co.mashup.moamoa.ui.signup.MoaSignupActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class KakaoSessionCheck extends AppCompatActivity{
+
+    public static final String TAG = KakaoSessionCheck.class.getSimpleName();
 
     /**
      * 유효한 세션이 있다는 검증 후
@@ -31,7 +40,6 @@ public class KakaoSessionCheck extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         requestMe();
     }
-
     /**
      * 사용자의 상태를 알아 보기 위해 me API 호출을 한다.
      */
@@ -44,7 +52,7 @@ public class KakaoSessionCheck extends AppCompatActivity{
 
                 ErrorCode result = ErrorCode.valueOf(errorResult.getErrorCode());
                 if (result == ErrorCode.CLIENT_ERROR_CODE) {
-                    Log.v("Request Me Error", "네트워크가 불안정 합니다. 나중에 다시 시도해주세요.");
+                    Log.v(TAG, "네트워크 불안정");
                     finish();
                 } else {
                     redirectLoginActivity();
@@ -53,25 +61,48 @@ public class KakaoSessionCheck extends AppCompatActivity{
 
             @Override
             public void onSessionClosed(ErrorResult errorResult) {
-                Log.v("onSessionClosed", "세션이 닫혔습니다 !!");
+                Log.v(TAG, "세션 닫힘");
                 redirectLoginActivity();
             }
 
             @Override
             public void onSuccess(UserProfile userProfile) {
-                Log.v("로그인 성공", "사용자 상태검토 후 페이지 이동");
-                redirectSignupActivity();
+
+                RetrofitSingleton retrofitSingleton = RetrofitSingleton.getInstance();
+                Call<ServerResult> call = retrofitSingleton.getCheckUser(String.valueOf(userProfile.getId()));
+
+                call.enqueue(new Callback<ServerResult>() {
+                    @Override
+                    public void onResponse(Call<ServerResult> call, Response<ServerResult> response) {
+                        Log.v(TAG,String.valueOf(response.body().getmResult()));
+                        if (response.body().getmResult()){
+                            redirectMainActivity();
+                        }else{
+                            redirectSignupActivity();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ServerResult> call, Throwable t) {
+                        Log.v(TAG ," " + t.getMessage());
+                    }
+                });
             }
 
             @Override
             public void onNotSignedUp() {
-                Log.v("onNotSignedUp", "회원가입창을 보여주세요!!");
+                Log.v(TAG, "회원가입이 필요합니다.");
             }
         });
     }
 
     private void redirectSignupActivity() {
-        startActivity(new Intent(this, MoaMainActivity.class));
+        startActivity(new Intent(KakaoSessionCheck.this, MoaSignupActivity.class));
+        finish();
+    }
+
+    private void redirectMainActivity() {
+        startActivity(new Intent(KakaoSessionCheck.this, MoaMainActivity.class));
         finish();
     }
 
@@ -83,9 +114,7 @@ public class KakaoSessionCheck extends AppCompatActivity{
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        final Intent intent = new Intent(getApplicationContext(), KakaoLoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent);
+                        startActivity(new Intent(KakaoSessionCheck.this, KakaoLoginActivity.class));
                         finish();
                     }
                 })

@@ -1,7 +1,5 @@
 package kr.co.mashup.moamoa.ui.home;
 
-import android.graphics.drawable.Drawable;
-
 public class ContentData {
 
     private int img;

@@ -5,25 +5,25 @@
     android:layout_height="wrap_content"
     android:theme="@style/AppTheme.NoActionBar">
 
+
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/actionbar_background">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="50dp"
+            android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="MOAMOA"
-                android:textSize="23sp"
-                android:textColor="@color/moa_blue"
-                android:gravity="center"/>
-
-        </FrameLayout>
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="15dp"
+                android:src="@drawable/acionbar_moa_title"/>
+        </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
