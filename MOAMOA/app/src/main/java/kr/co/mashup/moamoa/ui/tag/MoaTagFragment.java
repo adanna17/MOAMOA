@@ -9,26 +9,37 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import kr.co.mashup.moamoa.R;
-import kr.co.mashup.moamoa.common.SpacingItemDecoration_header;
-import kr.co.mashup.moamoa.ui.group.GroupAdapter;
+import kr.co.mashup.moamoa.common.ItemDividerlDecoration;
+import kr.co.mashup.moamoa.common.OnListItemListener;
+import kr.co.mashup.moamoa.common.SpacingHeaderItemDecoration;
+import kr.co.mashup.moamoa.data.Tag;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MoaTagFragment extends Fragment {
 
-    @BindView(R.id.tag_recycler_view)
-    RecyclerView tag_recyclerView;
+    @BindView(R.id.recyclerView_tag)
+    RecyclerView rvTag;
 
     @BindDimen(R.dimen.moa_list_first_margin)
     int itemFirstSpacingSize;
 
-    TagAdapter adapter;
+    TagListAdapter mTagListAdapter;
+
+    Unbinder mUnbinder;
+
+    public MoaTagFragment() {
+    }
+
+    public static MoaTagFragment newInstance() {
+        MoaTagFragment fragment = new MoaTagFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,11 +51,29 @@ public class MoaTagFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
 
-        adapter = new TagAdapter(getActivity().getApplicationContext());
-        tag_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        tag_recyclerView.setAdapter(adapter);
-        tag_recyclerView.addItemDecoration(new SpacingItemDecoration_header(itemFirstSpacingSize));
+        mTagListAdapter = new TagListAdapter(getActivity());
+        mTagListAdapter.setOnListItemListener(new OnListItemListener<Tag>() {
+            @Override
+            public void onListItemClick(Tag item) {
+                Toast.makeText(getActivity(), "item click", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onListITemDelete(int position) {
+            }
+        });
+        rvTag.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        rvTag.setHasFixedSize(true);
+        rvTag.setAdapter(mTagListAdapter);
+        rvTag.addItemDecoration(new SpacingHeaderItemDecoration(itemFirstSpacingSize));
+        rvTag.addItemDecoration(new ItemDividerlDecoration(getActivity()));  //아이템 하단 구분선
+    }
+
+    @Override
+    public void onDestroyView() {
+        mUnbinder.unbind();
+        super.onDestroyView();
     }
 }

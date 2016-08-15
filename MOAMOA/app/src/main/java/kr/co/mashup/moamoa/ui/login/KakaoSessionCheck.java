@@ -15,8 +15,8 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.helper.log.Logger;
 
-import kr.co.mashup.moamoa.server.RetrofitSingleton;
-import kr.co.mashup.moamoa.server.ServerResult;
+import kr.co.mashup.moamoa.data.remote.RetrofitSingleton;
+import kr.co.mashup.moamoa.data.remote.ServerResult;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.ui.main.MoaMainActivity;
 import kr.co.mashup.moamoa.ui.signup.MoaSignupActivity;

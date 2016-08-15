@@ -4,11 +4,11 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class SpacingItemDecoration_header extends RecyclerView.ItemDecoration{
+public class SpacingHeaderItemDecoration extends RecyclerView.ItemDecoration{
 
     private final int spacingFirstSize;
 
-    public SpacingItemDecoration_header(int spacingFirstSize) {
+    public SpacingHeaderItemDecoration(int spacingFirstSize) {
         this.spacingFirstSize = spacingFirstSize;
     }
 

@@ -6,4 +6,8 @@
     <dimen name="moa_list_first_margin">10dp</dimen>
     <dimen name="bottom_navigation_icon">35dp</dimen>
     <dimen name="bottom_navigation_height">65dp</dimen>
+
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="divider_right_padding">65dp</dimen>
+
 </resources>

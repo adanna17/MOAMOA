@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/btn_menu_add"
-        android:title="toolbar add"
+        android:name="toolbar add"
         android:icon="@drawable/icon_add"
         app:showAsAction="always"/>
 

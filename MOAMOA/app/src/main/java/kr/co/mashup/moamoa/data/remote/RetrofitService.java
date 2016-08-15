@@ -1,5 +1,6 @@
-package kr.co.mashup.moamoa.server;
+package kr.co.mashup.moamoa.data.remote;
 
+import kr.co.mashup.moamoa.data.User;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

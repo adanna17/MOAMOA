@@ -14,6 +14,11 @@ public class MoaStoryFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static MoaStoryFragment newInstance() {
+        MoaStoryFragment fragment = new MoaStoryFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

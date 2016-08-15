@@ -1,52 +1,101 @@
 package kr.co.mashup.moamoa.ui.home;
 
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
+import com.daimajia.swipe.implments.SwipeItemRecyclerMangerImpl;
 
-import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.mashup.moamoa.R;
+import kr.co.mashup.moamoa.common.OnListItemListener;
+import kr.co.mashup.moamoa.data.Content;
 
-public class ContentViewHolder extends RecyclerView.ViewHolder{
+public class ContentViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.content_title)
-    TextView txt_content_title;
+    @BindView(R.id.textView_content_name)
+    TextView tvContentName;
 
-    @BindView(R.id.content_site)
-    TextView txt_content_site;
+    @BindView(R.id.textView_content_url)
+    TextView tvContentUrl;
 
-    @BindView(R.id.content_thumbnail)
-    ImageView img_content_thumbnail;
+    @BindView(R.id.imageView_content_thumbnail)
+    ImageView ivContentThumbnail;
 
-    @BindView(R.id.swipe_item)
-    SwipeLayout swipeLayout;
+    @BindView(R.id.swipeLayout_item)
+    SwipeLayout itemSwipeLayout;
 
-    @BindView(R.id.content_menu_title)
-    TextView content_menu_title;
+    @BindView(R.id.ll_content_swipe_menu)
+    LinearLayout llContentSwipeMenu;
 
-    @BindView(R.id.content_menu_site)
-    TextView content_menu_site;
+    @BindView(R.id.textView_content_menu_title)
+    TextView tvContentMenuTitle;
 
-    @BindView(R.id.content_menu_delete)
-    ImageView content_menu_delete;
+    @BindView(R.id.textView_content_menu_url)
+    TextView tvContentMenuUrl;
 
+    @BindView(R.id.imageView_content_menu_delete)
+    ImageView ivContentMenuDelete;
 
-    public ContentViewHolder(View itemView) {
-        super(itemView);
-        ButterKnife.bind(this, itemView);
+    SwipeItemRecyclerMangerImpl mItemManger;  //swipeLayout controller
+    OnListItemListener<Content> mListItemListener;  //item click listener
+
+    public static ContentViewHolder newInstance(ViewGroup parent, SwipeItemRecyclerMangerImpl itemManger,
+                                                OnListItemListener<Content> listener) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_content, parent, false);
+        return new ContentViewHolder(itemView, itemManger, listener);
     }
 
-    public void update(final ContentData data){
-        img_content_thumbnail.setImageResource(data.getImg());
-        txt_content_title.setText(data.getTitle());
-        txt_content_site.setText(data.getSite());
-        content_menu_title.setText(data.getTitle());
-        content_menu_site.setText(data.getSite());
+    public ContentViewHolder(View itemView, SwipeItemRecyclerMangerImpl itemManger,
+                             OnListItemListener<Content> listener) {
+        super(itemView);
+        ButterKnife.bind(this, itemView);
+
+        mListItemListener = listener;
+        mItemManger = itemManger;
+
+        //swipe layout config
+        itemSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+        itemSwipeLayout.addDrag(SwipeLayout.DragEdge.Right, llContentSwipeMenu);
+    }
+
+    public void bind(final Content content) {
+
+        //data bind
+        ivContentThumbnail.setImageResource(content.getImg());
+        tvContentName.setText(content.getTitle());
+        tvContentUrl.setText(content.getSite());
+        tvContentMenuTitle.setText(content.getTitle());
+        tvContentMenuUrl.setText(content.getSite());
+
+        //listener bind
+        mItemManger.bindView(itemView, getAdapterPosition());
+        itemSwipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListItemListener != null) {
+                    mListItemListener.onListItemClick(content);
+                }
+            }
+        });
+
+        ivContentMenuDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mItemManger.removeShownLayouts(itemSwipeLayout);
+                mItemManger.closeAllItems();
+                if (mListItemListener != null) {
+                    mListItemListener.onListITemDelete(getAdapterPosition());
+                }
+
+            }
+        });
     }
 }

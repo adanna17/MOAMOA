@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.daimajia.swipe.SwipeLayout
+    android:id="@+id/swipeLayout_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe_item"
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:paddingBottom="5dp"
@@ -10,31 +10,32 @@
     app:leftEdgeSwipeOffset="0dp"
     app:rightEdgeSwipeOffset="0dp">
 
+    <!-- Bottom View(스와이프 하면 나오는 뷰) Start -->
     <LinearLayout
-        android:id="@+id/content_swipe_menu"
-        android:background="@color/moa_white"
+        android:id="@+id/ll_content_swipe_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        android:orientation="vertical">
+        android:background="@color/moa_white"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
+            android:id="@+id/textView_content_menu_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/content_menu_title"
             android:gravity="center_vertical"
-            android:textColor="@color/moa_text_main"
             android:singleLine="true"
-            android:textSize="13sp"
-            android:text="The 'moon' nobody noticed for a century"/>
+            android:text="The 'moon' nobody noticed for a century"
+            android:textColor="@color/moa_text_main"
+            android:textSize="13sp"/>
 
         <TextView
+            android:id="@+id/textView_content_menu_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/content_menu_site"
             android:text="http://www.bbc.com"
-            android:textSize="10sp"
-            android:textColor="@color/moa_text_description"/>
+            android:textColor="@color/moa_text_description"
+            android:textSize="10sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,47 +48,47 @@
                 android:layout_width="41dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
-                android:src="@drawable/icon_swipe_group" />
+                android:src="@drawable/icon_swipe_group"/>
 
             <ImageView
                 android:id="@+id/content_menu_tag"
                 android:layout_width="41dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
-                android:src="@drawable/icon_swipe_tag" />
+                android:src="@drawable/icon_swipe_tag"/>
 
             <ImageView
-                android:id="@+id/content_menu_delete"
+                android:id="@+id/imageView_content_menu_delete"
                 android:layout_width="41dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
-                android:src="@drawable/icon_swipe_delete" />
+                android:src="@drawable/icon_swipe_delete"/>
 
             <ImageView
                 android:id="@+id/content_menu_share"
                 android:layout_width="41dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
-                android:src="@drawable/icon_swipe_share" />
+                android:src="@drawable/icon_swipe_share"/>
 
         </LinearLayout>
-
     </LinearLayout>
+    <!-- Bottom View End-->
 
+    <!-- Surface View(평상시에 보이는 뷰) Start -->
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:padding="5dp"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
+            android:id="@+id/imageView_content_thumbnail"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/default_profile"
-            android:id="@+id/content_thumbnail"/>
+            android:src="@drawable/default_profile"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,22 +98,22 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView_content_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/content_title"
                 android:gravity="center_vertical"
+                android:text="The 'moon' nobody noticed for a century"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:text="The 'moon' nobody noticed for a century"/>
+                android:textSize="18sp"/>
 
             <TextView
+                android:id="@+id/textView_content_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/content_site"
                 android:text="http://www.bbc.com"
                 android:textColor="@color/moa_background_gray"/>
 
         </LinearLayout>
-
     </LinearLayout>
+    <!-- Surface View End -->
 </com.daimajia.swipe.SwipeLayout>

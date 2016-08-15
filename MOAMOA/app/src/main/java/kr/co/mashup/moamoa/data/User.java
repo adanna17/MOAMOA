@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa.server;
+package kr.co.mashup.moamoa.data;
 
 public class User {
     String kakaoId;

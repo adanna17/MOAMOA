@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 
 import kr.co.mashup.moamoa.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MoaProfileFragment extends Fragment {
-
 
     public MoaProfileFragment() {
         // Required empty public constructor
     }
 
+    public static MoaProfileFragment newInstance() {
+        MoaProfileFragment fragment = new MoaProfileFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa.common;
+package kr.co.mashup.moamoa.ui.main;
 
 
 import android.support.v4.app.Fragment;
@@ -6,13 +6,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class PagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragments = new ArrayList<>();
+public class MoaPagerAdapter extends FragmentPagerAdapter {
+    private final ArrayList<Fragment> mFragments;
 
-    public PagerAdapter(FragmentManager fm) {
+    public MoaPagerAdapter(FragmentManager fm) {
         super(fm);
+        mFragments = new ArrayList<>();
     }
 
     public void addFragment(Fragment fragment) {

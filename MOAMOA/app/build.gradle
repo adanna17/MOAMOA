@@ -33,19 +33,21 @@ dependencies {
     //Bottom Navigation
     compile 'com.aurelhubert:ahbottomnavigation:1.3.3'
 
-    //Recyclerview Swipe
+    //RecyclerView item Swipe
     compile 'com.daimajia.swipelayout:library:1.2.0@aar'
 
     //Annotation Processing
-    apt 'com.jakewharton:butterknife-compiler:8.1.0'
-    compile 'com.jakewharton:butterknife:8.1.0'
+    def butterKnifeVersion = '8.1.0'
+    apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    compile "com.jakewharton:butterknife:$butterKnifeVersion"
 
     // Kakao
     compile group: project.KAKAO_SDK_GROUP, name: 'kakaolink', version: project.KAKAO_SDK_VERSION
     compile group: project.KAKAO_SDK_GROUP, name: 'kakaotalk', version: project.KAKAO_SDK_VERSION
 
     // ImageLoader
-    compile 'com.facebook.fresco:fresco:0.8.1'
+    def frescoVersion = '0.8.1'
+    compile "com.facebook.fresco:fresco:$frescoVersion"
 
     // Material Dialog
     compile 'com.afollestad.material-dialogs:core:0.8.6.1'

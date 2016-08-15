@@ -1,4 +1,4 @@
-package kr.co.mashup.moamoa.server;
+package kr.co.mashup.moamoa.data.remote;
 
 public class ServerResult {
     private boolean bResult;

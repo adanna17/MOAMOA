@@ -1,12 +1,12 @@
-package kr.co.mashup.moamoa.ui.home;
+package kr.co.mashup.moamoa.data;
 
-public class ContentData {
+public class Content {
 
     private int img;
     private String title;
     private String site;
 
-    public ContentData(int img, String title, String site) {
+    public Content(int img, String title, String site) {
         this.img = img;
         this.title = title;
         this.site = site;
