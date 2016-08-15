@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import kr.co.mashup.moamoa.R;
+import kr.co.mashup.moamoa.common.EndlessRecyclerViewScrollListener;
 import kr.co.mashup.moamoa.common.OnListItemListener;
 import kr.co.mashup.moamoa.data.Content;
 
@@ -44,6 +45,7 @@ public class MoaHomeFragment extends Fragment {
     int refresh_end_color;
 
     ContentListAdapter mContentListAdapter;
+    int mLoadingItemPosition;  //로딩 푸터 추가한 위치
 
     Unbinder mUnbinder;
 
@@ -100,10 +102,27 @@ public class MoaHomeFragment extends Fragment {
 
             }
         });
-        rvHome.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager llmHome = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rvHome.setLayoutManager(llmHome);
         rvHome.setHasFixedSize(true);
         rvHome.setAdapter(mContentListAdapter);
         rvHome.addItemDecoration(new SpacingItemDecoration(itemSpacingSize, itemFirstSpacingSize));
+        rvHome.addOnScrollListener(new EndlessRecyclerViewScrollListener(llmHome) {
+            @Override
+            public int getFooterViewType(int defaultNoFooterViewType) {
+                return mContentListAdapter.VIEW_TYPE_LOADING;
+            }
+
+            @Override
+            public void onLoadMore(int page, int totalItemCount) {
+                mLoadingItemPosition = totalItemCount;  //로딩 푸터 추가한 위치 저장
+                mContentListAdapter.addItem(mLoadingItemPosition, null);  //로딩 푸터 추가
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                //Todo: api 호출 메소드 변경
+                customLoadMoreDataFromApi(10, totalItemCount);
+            }
+        });
     }
 
     /**
@@ -117,7 +136,31 @@ public class MoaHomeFragment extends Fragment {
                 mContentListAdapter.addItem(0, new Content(R.drawable.default_profile, "Welcome to Mash Up", "http://mash-up.co.kr"));
                 Toast.makeText(getActivity(), "refresh!!", Toast.LENGTH_SHORT).show();
                 mSwipeRefreshLayout.setRefreshing(false);
+                rvHome.scrollToPosition(0);
             }
         }, 1000);
     }
+
+    // Append more data into the adapter
+    // This method probably sends out a network request and appends new data items to your adapter.
+    public void customLoadMoreDataFromApi(int page, final int totalItemCount) {
+        // Send an API request to retrieve appropriate data using the offset value as a parameter.
+        //  --> Deserialize API response and then construct new objects to append to the adapter
+        //  --> Notify the adapter of the changes
+//        List<Contact> moreContacts = Contact.createContactsList(10, page);
+//        int curSize = adapter.getItemCount();
+//        allContacts.addAll(moreContacts);
+//        adapter.notifyItemRangeInserted(curSize, allContacts.size() - 1);
+
+        //Todo: 쓰레드 로직 수정
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mContentListAdapter.addItem(totalItemCount + 1, new Content(R.drawable.default_profile, "Welcome to Mash Up", "http://mash-up.co.kr"));
+                mContentListAdapter.removeItem(mLoadingItemPosition);  //로딩 푸터 제거
+            }
+        }, 3000);
+    }
+
+
 }

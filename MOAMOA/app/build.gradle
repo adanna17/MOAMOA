@@ -37,7 +37,7 @@ dependencies {
     compile 'com.daimajia.swipelayout:library:1.2.0@aar'
 
     //Annotation Processing
-    def butterKnifeVersion = '8.1.0'
+    def butterKnifeVersion = '8.2.1'
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
 

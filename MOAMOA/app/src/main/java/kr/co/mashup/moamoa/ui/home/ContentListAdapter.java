@@ -4,6 +4,7 @@ package kr.co.mashup.moamoa.ui.home;
 import android.content.Context;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -17,7 +18,10 @@ import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.OnListItemListener;
 import kr.co.mashup.moamoa.data.Content;
 
-public class ContentListAdapter extends RecyclerSwipeAdapter<ContentViewHolder> {
+public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> {
+
+    public static final int VIEW_TYPE_ITEM = 0;
+    public static final int VIEW_TYPE_LOADING = 1;
 
     private Context mContext;
     private ArrayList<Content> mContents;
@@ -45,16 +49,30 @@ public class ContentListAdapter extends RecyclerSwipeAdapter<ContentViewHolder> 
     }
 
     @Override
-    public ContentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return ContentViewHolder.newInstance(parent, mItemManger, mOnListItemListener);
+    public int getItemViewType(int position) {
+        return mContents.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
     @Override
-    public void onBindViewHolder(ContentViewHolder holder, int position) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case VIEW_TYPE_ITEM:
+                return ContentViewHolder.newInstance(parent, mItemManger, mOnListItemListener);
+            case VIEW_TYPE_LOADING:
+                return ContentFooterViewHolder.newInstance(parent);
+            default:
+                return null;
+        }
+    }
 
-        Content content = mContents.get(position);
-
-        holder.bind(content);
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ContentViewHolder) {
+            Content content = mContents.get(position);
+            ((ContentViewHolder) holder).bind(content);
+        } else {
+            ((ContentFooterViewHolder) holder).bind();
+        }
     }
 
     @Override

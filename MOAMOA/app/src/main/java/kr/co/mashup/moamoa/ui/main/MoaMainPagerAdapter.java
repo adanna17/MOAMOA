@@ -7,10 +7,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class MoaPagerAdapter extends FragmentPagerAdapter {
+public class MoaMainPagerAdapter extends FragmentPagerAdapter {
     private final ArrayList<Fragment> mFragments;
 
-    public MoaPagerAdapter(FragmentManager fm) {
+    public MoaMainPagerAdapter(FragmentManager fm) {
         super(fm);
         mFragments = new ArrayList<>();
     }

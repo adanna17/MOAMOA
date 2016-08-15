@@ -34,7 +34,7 @@ public class MoaMainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    private MoaPagerAdapter mMoaPagerAdapter;
+    private MoaMainPagerAdapter mMoaMainPagerAdapter;
     private ArrayList<AHBottomNavigationItem> mBottomNavigationItems = new ArrayList<>();
 
     @BindColor(R.color.moa_blue)
@@ -93,12 +93,12 @@ public class MoaMainActivity extends AppCompatActivity {
             }
         });
 
-        mMoaPagerAdapter = new MoaPagerAdapter(getSupportFragmentManager());
-        mMoaPagerAdapter.addFragment(MoaHomeFragment.newInstance());
-        mMoaPagerAdapter.addFragment(MoaGroupFragment.newInstance());
-        mMoaPagerAdapter.addFragment(MoaTagFragment.newInstance());
-        mMoaPagerAdapter.addFragment(MoaStoryFragment.newInstance());
-        mMoaPagerAdapter.addFragment(MoaProfileFragment.newInstance());
-        mBottomNavigationViewPager.setAdapter(mMoaPagerAdapter);
+        mMoaMainPagerAdapter = new MoaMainPagerAdapter(getSupportFragmentManager());
+        mMoaMainPagerAdapter.addFragment(MoaHomeFragment.newInstance());
+        mMoaMainPagerAdapter.addFragment(MoaGroupFragment.newInstance());
+        mMoaMainPagerAdapter.addFragment(MoaTagFragment.newInstance());
+        mMoaMainPagerAdapter.addFragment(MoaStoryFragment.newInstance());
+        mMoaMainPagerAdapter.addFragment(MoaProfileFragment.newInstance());
+        mBottomNavigationViewPager.setAdapter(mMoaMainPagerAdapter);
     }
 }
