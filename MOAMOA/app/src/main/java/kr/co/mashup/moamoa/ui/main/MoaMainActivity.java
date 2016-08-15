@@ -1,5 +1,7 @@
 package kr.co.mashup.moamoa.ui.main;
 
+import android.support.annotation.UiThread;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -49,8 +51,7 @@ public class MoaMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_moa_main);
         mUnbinder = ButterKnife.bind(this);
 
-        setSupportActionBar(mToolbar);
-
+        initToolbar();
         initUI();
     }
 
@@ -60,8 +61,17 @@ public class MoaMainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void initUI() {
+    @UiThread
+    private void initToolbar() {
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayShowTitleEnabled(false);  //actionBar 기본 타이틀 제거
+        }
+    }
 
+    @UiThread
+    private void initUI() {
         mBottomNavigationItems.add(new AHBottomNavigationItem("홈", R.drawable.icon_home));
         mBottomNavigationItems.add(new AHBottomNavigationItem("그룹", R.drawable.icon_group));
         mBottomNavigationItems.add(new AHBottomNavigationItem("태그", R.drawable.icon_tag));
