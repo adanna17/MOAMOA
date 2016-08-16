@@ -21,9 +21,11 @@ import butterknife.Unbinder;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.EndlessRecyclerViewScrollListener;
 import kr.co.mashup.moamoa.common.OnListItemListener;
+import kr.co.mashup.moamoa.common.OnSwipeMenuListener;
 import kr.co.mashup.moamoa.data.Content;
 
 //Todo: Endless Scrolling
+//Todo: List item click callback 구현
 public class MoaHomeFragment extends Fragment {
 
     @BindView(R.id.recyclerView_home)
@@ -89,19 +91,36 @@ public class MoaHomeFragment extends Fragment {
 
     private void initContentsList() {
         mContentListAdapter = new ContentListAdapter(getActivity());
-        mContentListAdapter.setOnListItemListener(new OnListItemListener<Content>() {
+        mContentListAdapter.setOnSwipeMenuListener(new OnSwipeMenuListener() {
             @Override
-            public void onListItemClick(Content item) {
-                Toast.makeText(getActivity(), "item 선택", Toast.LENGTH_SHORT).show();
+            public void onMoveGroup() {
+                //Todo: 구현
             }
 
             @Override
-            public void onListITemDelete(int position) {
+            public void onContentTag() {
+                //Todo: 구현
+            }
+
+            @Override
+            public void onContentDelete(int position) {
                 mContentListAdapter.removeItem(position);
                 Toast.makeText(getActivity(), "Deleted ", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onContentShare() {
+                //Todo: 구현
+            }
+
+            @Override
+            public void onListItemClick(Content item) {
+                //Todo: 구현
+                Toast.makeText(getActivity(), "item 선택", Toast.LENGTH_SHORT).show();
             }
         });
+
+
         LinearLayoutManager llmHome = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvHome.setLayoutManager(llmHome);
         rvHome.setHasFixedSize(true);

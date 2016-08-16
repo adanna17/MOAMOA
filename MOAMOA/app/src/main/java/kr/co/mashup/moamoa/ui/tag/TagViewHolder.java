@@ -1,18 +1,17 @@
 package kr.co.mashup.moamoa.ui.tag;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.OnListItemListener;
 import kr.co.mashup.moamoa.data.Tag;
+import kr.co.mashup.moamoa.ui.base.BaseViewHolder;
 
-public class TagViewHolder extends RecyclerView.ViewHolder {
+public class TagViewHolder extends BaseViewHolder<Tag> {
 
     @BindView(R.id.textView_tag_name)
     TextView tvTagName;
@@ -27,11 +26,11 @@ public class TagViewHolder extends RecyclerView.ViewHolder {
 
     public TagViewHolder(View itemView, OnListItemListener<Tag> listener) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
 
         mListItemListener = listener;
     }
 
+    @Override
     public void bind(final Tag tag) {
         tvTagName.setText(String.format("# %s", tag.getName()));
 

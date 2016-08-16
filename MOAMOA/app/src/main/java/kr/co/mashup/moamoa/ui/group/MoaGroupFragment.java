@@ -1,10 +1,13 @@
 package kr.co.mashup.moamoa.ui.group;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import butterknife.BindDimen;
 import butterknife.BindView;
@@ -81,8 +86,18 @@ public class MoaGroupFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.btn_menu_add:
-                String message = "추가버튼이 클릭되었습니다.";
-                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                new MaterialDialog.Builder(getActivity())
+                        .title(R.string.moa_group_add_title)
+                        .inputType(InputType.TYPE_CLASS_TEXT)
+                        .input(R.string.moa_group_add_hint, R.string.moa_group_add_prefill, new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                                createGroup(input.toString());
+                            }
+                        })
+                        .positiveText(R.string.moa_group_add_positive)
+                        .negativeText(R.string.moa_group_add_negative)
+                        .show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -95,15 +110,24 @@ public class MoaGroupFragment extends Fragment {
             public void onListItemClick(Group item) {
                 Toast.makeText(getActivity(), "item click", Toast.LENGTH_SHORT).show();
             }
-
-            @Override
-            public void onListITemDelete(int position) {
-            }
         });
         rvGroup.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         rvGroup.setHasFixedSize(true);
         rvGroup.setAdapter(mGroupListAdapter);
-        rvGroup.addItemDecoration(new SpacingHeaderItemDecoration(itemFirstSpacingSize));
-        rvGroup.addItemDecoration(new ItemDividerlDecoration(getActivity()));
+        rvGroup.addItemDecoration(new SpacingHeaderItemDecoration(itemFirstSpacingSize));  //상단 간격
+        rvGroup.addItemDecoration(new ItemDividerlDecoration(getActivity()));  //아이템 하단 구분선
+    }
+
+    /**
+     * 새 그룹 추가
+     *
+     * @param groupName 그룹 이름
+     */
+    private void createGroup(String groupName) {
+        Group group = new Group(groupName);
+        mGroupListAdapter.addItem(mGroupListAdapter.getItemCount(), group);
+        Toast.makeText(getActivity(), "그룹이 추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+        //Todo: 그룹 추가 api call
     }
 }

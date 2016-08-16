@@ -7,4 +7,19 @@
     <string name="moa_signup_id_hint">사용할 아이디를 입력해주세요</string>
     <string name="moa_signup_nickname_hint">사용할 닉네임을 입력해주세요</string>
     <string name="moa_nogroup">현재 회원님이 속한 그룹이 없습니다</string>
+
+    <string name="toolbar_menu_add">ADD</string>
+
+    <string name="moa_group_add_title">새 그룹</string>
+    <string name="moa_group_add_hint">새 그룹의 이름을 입력하세요</string>
+    <string name="moa_group_add_prefill"></string>
+    <string name="moa_group_add_positive">확인</string>
+    <string name="moa_group_add_negative">취소</string>
+
+    <string name="moa_tag_add_title">새 태그</string>
+    <string name="moa_tag_add_hint">새 태그의 이름을 입력하세요</string>
+    <string name="moa_tag_add_prefill"></string>
+    <string name="moa_tag_add_positive">확인</string>
+    <string name="moa_tag_add_negative">취소</string>
+
 </resources>

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.OnListItemListener;
+import kr.co.mashup.moamoa.common.OnSwipeMenuListener;
 import kr.co.mashup.moamoa.data.Content;
 
 public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> {
@@ -26,10 +27,10 @@ public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
     private Context mContext;
     private ArrayList<Content> mContents;
 
-    OnListItemListener<Content> mOnListItemListener;
+    OnSwipeMenuListener mOnSwipeMenuListener;
 
-    public void setOnListItemListener(OnListItemListener<Content> listener) {
-        mOnListItemListener = listener;
+    public void setOnSwipeMenuListener(OnSwipeMenuListener listener) {
+        mOnSwipeMenuListener = listener;
     }
 
     public ContentListAdapter(Context mContext) {
@@ -57,7 +58,7 @@ public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_ITEM:
-                return ContentViewHolder.newInstance(parent, mItemManger, mOnListItemListener);
+                return ContentViewHolder.newInstance(parent, mItemManger, mOnSwipeMenuListener);
             case VIEW_TYPE_LOADING:
                 return ContentFooterViewHolder.newInstance(parent);
             default:
@@ -71,7 +72,7 @@ public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
             Content content = mContents.get(position);
             ((ContentViewHolder) holder).bind(content);
         } else {
-            ((ContentFooterViewHolder) holder).bind();
+            ((ContentFooterViewHolder) holder).bind(null);
         }
     }
 

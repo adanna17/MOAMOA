@@ -17,13 +17,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import kr.co.mashup.moamoa.R;
+import kr.co.mashup.moamoa.ui.base.BaseActivity;
 import kr.co.mashup.moamoa.ui.group.MoaGroupFragment;
 import kr.co.mashup.moamoa.ui.home.MoaHomeFragment;
 import kr.co.mashup.moamoa.ui.profile.MoaProfileFragment;
 import kr.co.mashup.moamoa.ui.story.MoaStoryFragment;
 import kr.co.mashup.moamoa.ui.tag.MoaTagFragment;
 
-public class MoaMainActivity extends AppCompatActivity {
+public class MoaMainActivity extends BaseActivity {
 
     @BindView(R.id.view_pager)
     AHBottomNavigationViewPager mBottomNavigationViewPager;
@@ -43,22 +44,17 @@ public class MoaMainActivity extends AppCompatActivity {
     @BindColor(R.color.moa_background_gray)
     int mInactiveColor;
 
-    Unbinder mUnbinder;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_moa_main);
-        mUnbinder = ButterKnife.bind(this);
 
         initToolbar();
         initUI();
     }
 
     @Override
-    protected void onDestroy() {
-        mUnbinder.unbind();
-        super.onDestroy();
+    public int getLayoutID() {
+        return R.layout.activity_moa_main;
     }
 
     @UiThread

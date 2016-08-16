@@ -1,19 +1,18 @@
 package kr.co.mashup.moamoa.ui.home;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import kr.co.mashup.moamoa.R;
+import kr.co.mashup.moamoa.ui.base.BaseViewHolder;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 /**
  * Created by Dong on 2016-08-15.
  */
-public class ContentFooterViewHolder extends RecyclerView.ViewHolder {
+public class ContentFooterViewHolder extends BaseViewHolder {
 
     @BindView(R.id.progressBar)
     MaterialProgressBar mProgressBar;
@@ -26,10 +25,10 @@ public class ContentFooterViewHolder extends RecyclerView.ViewHolder {
 
     public ContentFooterViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
     }
 
-    public void bind() {
+    @Override
+    public void bind(Object o) {
         mProgressBar.setIndeterminate(true);
     }
 }

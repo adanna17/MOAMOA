@@ -1,6 +1,7 @@
 package kr.co.mashup.moamoa.ui.home;
 
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,14 @@ import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.implments.SwipeItemRecyclerMangerImpl;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.OnListItemListener;
+import kr.co.mashup.moamoa.common.OnSwipeMenuListener;
 import kr.co.mashup.moamoa.data.Content;
+import kr.co.mashup.moamoa.ui.base.BaseViewHolder;
 
-public class ContentViewHolder extends RecyclerView.ViewHolder {
+public class ContentViewHolder extends BaseViewHolder<Content> {
 
     @BindView(R.id.textView_content_name)
     TextView tvContentName;
@@ -40,25 +43,33 @@ public class ContentViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.textView_content_menu_url)
     TextView tvContentMenuUrl;
 
+    @BindView(R.id.content_menu_group)
+    ImageView ivContentMenuGroup;
+
+    @BindView(R.id.content_menu_tag)
+    ImageView ivContentMenuTag;
+
     @BindView(R.id.imageView_content_menu_delete)
     ImageView ivContentMenuDelete;
 
-    SwipeItemRecyclerMangerImpl mItemManger;  //swipeLayout controller
-    OnListItemListener<Content> mListItemListener;  //item click listener
+    @BindView(R.id.content_menu_share)
+    ImageView ivContentMenuShare;
 
-    public static ContentViewHolder newInstance(ViewGroup parent, SwipeItemRecyclerMangerImpl itemManger,
-                                                OnListItemListener<Content> listener) {
+    SwipeItemRecyclerMangerImpl mItemManger;  //swipeLayout controller
+    OnSwipeMenuListener mSwipeMenuListener;
+
+    public static ContentViewHolder newInstance(ViewGroup parent, @NonNull SwipeItemRecyclerMangerImpl itemManger,
+                                                @Nullable OnSwipeMenuListener listener) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_content, parent, false);
         return new ContentViewHolder(itemView, itemManger, listener);
     }
 
-    public ContentViewHolder(View itemView, SwipeItemRecyclerMangerImpl itemManger,
-                             OnListItemListener<Content> listener) {
+    public ContentViewHolder(View itemView, @NonNull SwipeItemRecyclerMangerImpl itemManger,
+                             @Nullable OnSwipeMenuListener listener) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
 
-        mListItemListener = listener;
+        mSwipeMenuListener = listener;
         mItemManger = itemManger;
 
         //swipe layout config
@@ -66,6 +77,7 @@ public class ContentViewHolder extends RecyclerView.ViewHolder {
         itemSwipeLayout.addDrag(SwipeLayout.DragEdge.Right, llContentSwipeMenu);
     }
 
+    @Override
     public void bind(final Content content) {
 
         //data bind
@@ -77,11 +89,36 @@ public class ContentViewHolder extends RecyclerView.ViewHolder {
 
         //listener bind
         mItemManger.bindView(itemView, getAdapterPosition());
+
         itemSwipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mListItemListener != null) {
-                    mListItemListener.onListItemClick(content);
+                if (mSwipeMenuListener != null) {
+                    mSwipeMenuListener.onListItemClick(content);
+                }
+            }
+        });
+
+        ivContentMenuGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mItemManger.removeShownLayouts(itemSwipeLayout);
+                mItemManger.closeAllItems();
+                if (mSwipeMenuListener != null) {
+                    //Todo: 수정
+                    mSwipeMenuListener.onMoveGroup();
+                }
+            }
+        });
+
+        ivContentMenuTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mItemManger.removeShownLayouts(itemSwipeLayout);
+                mItemManger.closeAllItems();
+                if (mSwipeMenuListener != null) {
+                    //Todo: 수정
+                    mSwipeMenuListener.onContentTag();
                 }
             }
         });
@@ -91,10 +128,21 @@ public class ContentViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 mItemManger.removeShownLayouts(itemSwipeLayout);
                 mItemManger.closeAllItems();
-                if (mListItemListener != null) {
-                    mListItemListener.onListITemDelete(getAdapterPosition());
+                if (mSwipeMenuListener != null) {
+                    mSwipeMenuListener.onContentDelete(getAdapterPosition());
                 }
+            }
+        });
 
+        ivContentMenuShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mItemManger.removeShownLayouts(itemSwipeLayout);
+                mItemManger.closeAllItems();
+                if (mSwipeMenuListener != null) {
+                    //Todo: 수정
+                    mSwipeMenuListener.onContentShare();
+                }
             }
         });
     }

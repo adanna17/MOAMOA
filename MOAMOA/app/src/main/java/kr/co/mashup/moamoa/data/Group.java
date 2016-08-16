@@ -3,18 +3,15 @@ package kr.co.mashup.moamoa.data;
 
 import java.util.List;
 
-import kr.co.mashup.moamoa.data.Contents;
-import kr.co.mashup.moamoa.data.User;
-
 public class Group {
 
     int id;  //고유 식별자
     String name;  //이름
     boolean favorite;  //즐겨찾기
-    boolean bush;  //push 설정
+    boolean push;  //push 설정
 
     List<User> mUsers;  //그룹의 유저 리스트
-    List<Contents> mContentses;  //그룹의 컨텐츠 리스트
+    List<Content> mContents;  //그룹의 컨텐츠 리스트
 
     public Group(String name) {
         this.name = name;
@@ -44,12 +41,12 @@ public class Group {
         this.favorite = favorite;
     }
 
-    public boolean isBush() {
-        return bush;
+    public boolean isPush() {
+        return push;
     }
 
-    public void setBush(boolean bush) {
-        this.bush = bush;
+    public void setPush(boolean push) {
+        this.push = push;
     }
 
     public List<User> getUsers() {
@@ -60,11 +57,11 @@ public class Group {
         mUsers = users;
     }
 
-    public List<Contents> getContentses() {
-        return mContentses;
+    public List<Content> getContents() {
+        return mContents;
     }
 
-    public void setContentses(List<Contents> contentses) {
-        mContentses = contentses;
+    public void setContentses(List<Content> contents) {
+        mContents = contents;
     }
 }
