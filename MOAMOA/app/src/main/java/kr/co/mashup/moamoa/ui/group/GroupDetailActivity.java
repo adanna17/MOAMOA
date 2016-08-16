@@ -23,12 +23,12 @@ import kr.co.mashup.moamoa.ui.home.MoaHomeFragment;
 public class GroupDetailActivity extends BaseActivity {
 
     public static final String TAG = GroupDetailActivity.class.getSimpleName();  //로그
-    public static final String GROUP = "group";
+    public static final String MOA_GROUP = "group";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @BindView(R.id.textView_toolbar_group_name)
+    @BindView(R.id.textView_toolbar_name)
     TextView tvToolbarGroupName;
 
     @BindView(R.id.drawer_layout)
@@ -43,7 +43,7 @@ public class GroupDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         Intent receiveIntent = getIntent();
-        mGroup = (Group) receiveIntent.getSerializableExtra(GROUP);
+        mGroup = (Group) receiveIntent.getSerializableExtra(MOA_GROUP);
 
         initToolbar();
 

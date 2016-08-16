@@ -29,5 +29,7 @@
     <string name="group_detail_member_add">멤버 추가하기</string>
 
     <string name="action_nav_open">Open</string>
+    <string name="title_activity_tag_detail">TagDetailActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

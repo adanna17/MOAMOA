@@ -1,6 +1,8 @@
 package kr.co.mashup.moamoa.data;
 
-public class Tag {
+import java.io.Serializable;
+
+public class Tag implements Serializable{
 
     int id;  //고유 식별자
     private String name;  //이름

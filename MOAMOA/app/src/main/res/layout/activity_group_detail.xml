@@ -16,7 +16,7 @@
         android:fitsSystemWindows="true">
 
         <include
-            layout="@layout/app_bar_group_detail"/>
+            layout="@layout/app_bar_detail"/>
 
         <include
             layout="@layout/content_group_detail"/>

@@ -17,11 +17,11 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <TextView
-        android:id="@+id/bottom_support"
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/moa_bottomnav_border"/>
+    <!--<TextView-->
+    <!--android:id="@+id/bottom_support"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="66dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:background="@color/moa_bottomnav_border"/>-->
 
 </RelativeLayout>

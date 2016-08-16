@@ -1,6 +1,7 @@
 package kr.co.mashup.moamoa.ui.tag;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +28,7 @@ import kr.co.mashup.moamoa.common.ItemDividerlDecoration;
 import kr.co.mashup.moamoa.common.OnListItemListener;
 import kr.co.mashup.moamoa.common.SpacingHeaderItemDecoration;
 import kr.co.mashup.moamoa.data.Tag;
+import kr.co.mashup.moamoa.ui.group.GroupDetailActivity;
 
 public class MoaTagFragment extends Fragment {
 
@@ -107,7 +109,10 @@ public class MoaTagFragment extends Fragment {
         mTagListAdapter.setOnListItemListener(new OnListItemListener<Tag>() {
             @Override
             public void onListItemClick(Tag item) {
-                Toast.makeText(getActivity(), "item click", Toast.LENGTH_SHORT).show();
+                //태그 상세화면으로 이동
+                Intent intent = new Intent(getActivity(), TagDetailActivity.class);
+                intent.putExtra(TagDetailActivity.MOA_TAG, item);
+                startActivity(intent);
             }
         });
         rvTag.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

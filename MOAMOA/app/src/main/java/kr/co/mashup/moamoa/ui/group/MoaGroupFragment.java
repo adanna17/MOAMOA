@@ -110,7 +110,7 @@ public class MoaGroupFragment extends Fragment {
             public void onListItemClick(Group item) {
                 //그룹 상세화면으로 이동
                 Intent intent = new Intent(getActivity(), GroupDetailActivity.class);
-                intent.putExtra(GroupDetailActivity.GROUP, item);
+                intent.putExtra(GroupDetailActivity.MOA_GROUP, item);
                 startActivity(intent);
             }
         });
