@@ -21,8 +21,8 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupViewHolder> {
         mOnListItemListener = listener;
     }
 
-    public GroupListAdapter(Context mContext) {
-        this.mContext = mContext;
+    public GroupListAdapter(Context context) {
+        this.mContext = context;
         this.mGroups = new ArrayList<>();
         setData();
     }

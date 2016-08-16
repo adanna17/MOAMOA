@@ -2,27 +2,21 @@ package kr.co.mashup.moamoa.ui.home;
 
 
 import android.content.Context;
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
 import java.util.ArrayList;
 
 import kr.co.mashup.moamoa.R;
-import kr.co.mashup.moamoa.common.OnListItemListener;
 import kr.co.mashup.moamoa.common.OnSwipeMenuListener;
 import kr.co.mashup.moamoa.data.Content;
 
 public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> {
 
     public static final int VIEW_TYPE_ITEM = 0;
-    public static final int VIEW_TYPE_LOADING = 1;
+    public static final int VIEW_TYPE_FOOTER = 1;
 
     private Context mContext;
     private ArrayList<Content> mContents;
@@ -33,8 +27,8 @@ public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
         mOnSwipeMenuListener = listener;
     }
 
-    public ContentListAdapter(Context mContext) {
-        this.mContext = mContext;
+    public ContentListAdapter(Context context) {
+        this.mContext = context;
         this.mContents = new ArrayList<>();
         setData();
     }
@@ -51,7 +45,7 @@ public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        return mContents.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+        return mContents.get(position) == null ? VIEW_TYPE_FOOTER : VIEW_TYPE_ITEM;
     }
 
     @Override
@@ -59,7 +53,7 @@ public class ContentListAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHo
         switch (viewType) {
             case VIEW_TYPE_ITEM:
                 return ContentViewHolder.newInstance(parent, mItemManger, mOnSwipeMenuListener);
-            case VIEW_TYPE_LOADING:
+            case VIEW_TYPE_FOOTER:
                 return ContentFooterViewHolder.newInstance(parent);
             default:
                 return null;

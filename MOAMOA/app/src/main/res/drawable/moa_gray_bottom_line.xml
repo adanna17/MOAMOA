@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Bottom Line -->
+    <!-- Color of your action bar -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/moa_text_hint" />
+            <solid android:color="@color/moa_text_hint"/>
         </shape>
     </item>
 
-    <!-- Color of your action bar -->
+    <!-- Bottom Line -->
     <item android:bottom="1dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/white" />
+            <solid android:color="@color/white"/>
         </shape>
     </item>
 </layer-list>

@@ -1,9 +1,10 @@
 package kr.co.mashup.moamoa.data;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Group {
+public class Group implements Serializable {
 
     int id;  //고유 식별자
     String name;  //이름

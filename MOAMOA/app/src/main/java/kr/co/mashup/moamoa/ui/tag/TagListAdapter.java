@@ -22,8 +22,8 @@ public class TagListAdapter extends RecyclerView.Adapter<TagViewHolder> {
         mOnListItemListener = listener;
     }
 
-    public TagListAdapter(Context mContext) {
-        this.mContext = mContext;
+    public TagListAdapter(Context context) {
+        this.mContext = context;
         this.mTags = new ArrayList<>();
         setData();
     }

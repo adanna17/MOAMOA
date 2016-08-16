@@ -1,5 +1,6 @@
 package kr.co.mashup.moamoa.ui.group;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -108,7 +109,10 @@ public class MoaGroupFragment extends Fragment {
         mGroupListAdapter.setOnListItemListener(new OnListItemListener<Group>() {
             @Override
             public void onListItemClick(Group item) {
-                Toast.makeText(getActivity(), "item click", Toast.LENGTH_SHORT).show();
+                //그룹 상세화면으로 이동
+                Intent intent = new Intent(getActivity(), GroupDetailActivity.class);
+                intent.putExtra(GroupDetailActivity.GROUP, item);
+                startActivity(intent);
             }
         });
         rvGroup.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

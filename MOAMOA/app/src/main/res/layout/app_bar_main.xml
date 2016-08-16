@@ -2,17 +2,20 @@
 <android.support.design.widget.AppBarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/AppTheme.AppBarOverlay"
-    app:popupTheme="@style/AppTheme.PopupOverlay">
+    app:popupTheme="@style/AppTheme.PopupOverlay"
+    tools:context="kr.co.mashup.moamoa.ui.main.MoaMainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/toolbar_background"
-        android:minHeight="?attr/actionBarSize">
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
         <!--app:contentInsetEnd="0dp"-->
         <!--app:contentInsetStart="0dp"-->
 

@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="13dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/moa_blue_underline"
+            android:background="@drawable/moa_blue_bottom_line"
             android:orientation="horizontal"
             android:padding="8dp">
 
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="125dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/moa_blue_underline"
+            android:background="@drawable/moa_blue_bottom_line"
             android:orientation="horizontal"
             android:padding="8dp">
 

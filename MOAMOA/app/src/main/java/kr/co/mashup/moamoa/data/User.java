@@ -13,6 +13,10 @@ public class User {
         this.nickname = nickname;
     }
 
+    public User(String nickname) {
+        this.nickname = nickname;
+    }
+
     public String getKakaoId() {
         return kakaoId;
     }

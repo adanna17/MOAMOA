@@ -22,7 +22,6 @@
 
         <activity android:name=".ui.login.KakaoLoginActivity"/>
         <activity android:name=".ui.login.KakaoSessionCheck"/>
-
         <activity
             android:name=".ui.signup.MoaSignupActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,11 +36,9 @@
                     android:scheme="@string/kakao_scheme"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.init.MoaNoGroupActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-
         <activity
             android:name=".ui.main.MoaMainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -50,6 +47,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.group.GroupDetailActivity"
+            android:parentActivityName=".ui.main.MoaMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kr.co.mashup.moamoa.ui.main.MoaMainActivity"/>
         </activity>
     </application>
 

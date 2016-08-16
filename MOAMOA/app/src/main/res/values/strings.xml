@@ -22,4 +22,12 @@
     <string name="moa_tag_add_positive">확인</string>
     <string name="moa_tag_add_negative">취소</string>
 
+    <!--group detail-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="group_detail_member">그룹멤버</string>
+    <string name="group_detail_member_add">멤버 추가하기</string>
+
+    <string name="action_settings">Settings</string>
+
 </resources>

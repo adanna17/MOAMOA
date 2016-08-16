@@ -20,7 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.EndlessRecyclerViewScrollListener;
-import kr.co.mashup.moamoa.common.OnListItemListener;
 import kr.co.mashup.moamoa.common.OnSwipeMenuListener;
 import kr.co.mashup.moamoa.data.Content;
 
@@ -129,7 +128,7 @@ public class MoaHomeFragment extends Fragment {
         rvHome.addOnScrollListener(new EndlessRecyclerViewScrollListener(llmHome) {
             @Override
             public int getFooterViewType(int defaultNoFooterViewType) {
-                return mContentListAdapter.VIEW_TYPE_LOADING;
+                return mContentListAdapter.VIEW_TYPE_FOOTER;
             }
 
             @Override

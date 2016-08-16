@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.main.MoaMainActivity">
 
-    <include layout="@layout/app_bar_moa"/>
+    <include layout="@layout/app_bar_main"/>
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager
         android:id="@+id/view_pager"
