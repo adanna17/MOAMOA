@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -86,7 +85,7 @@ public class MoaGroupFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.btn_menu_add:
+            case R.id.action_add:
                 new MaterialDialog.Builder(getActivity())
                         .title(R.string.moa_group_add_title)
                         .inputType(InputType.TYPE_CLASS_TEXT)

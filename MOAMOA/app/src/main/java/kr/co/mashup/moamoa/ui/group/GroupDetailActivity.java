@@ -3,25 +3,26 @@ package kr.co.mashup.moamoa.ui.group;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.UiThread;
-import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.data.Group;
 import kr.co.mashup.moamoa.ui.base.BaseActivity;
+import kr.co.mashup.moamoa.ui.home.MoaHomeFragment;
 
-public class GroupDetailActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+//Todo: 컨텐츠 리스트 스와이프 메뉴 항목 뭐가 있어야되는지 보고 수정해야함
+public class GroupDetailActivity extends BaseActivity {
 
+    public static final String TAG = GroupDetailActivity.class.getSimpleName();  //로그
     public static final String GROUP = "group";
 
     @BindView(R.id.toolbar)
@@ -30,7 +31,12 @@ public class GroupDetailActivity extends BaseActivity
     @BindView(R.id.textView_toolbar_group_name)
     TextView tvToolbarGroupName;
 
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+
     Group mGroup;
+
+    FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,18 @@ public class GroupDetailActivity extends BaseActivity
         mGroup = (Group) receiveIntent.getSerializableExtra(GROUP);
 
         initToolbar();
-        initNavigationDrawer();
-        initContentList();
+
+        mFragmentManager = getSupportFragmentManager();
+
+        //초기 화면 지정
+        Fragment fragment = mFragmentManager.findFragmentById(R.id.fl_container_fragment);
+        if (fragment == null) {
+            MoaHomeFragment moaHomeFragment = MoaHomeFragment.newInstance();
+
+            mFragmentManager.beginTransaction()
+                    .add(R.id.fl_container_fragment, moaHomeFragment, MoaHomeFragment.TAG)
+                    .commit();
+        }
     }
 
     @Override
@@ -68,42 +84,17 @@ public class GroupDetailActivity extends BaseActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_nav_open) {  //drawer navigation open
+            if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
+                mDrawerLayout.closeDrawer(GravityCompat.END);
+            } else {
+                mDrawerLayout.openDrawer(GravityCompat.END);
+            }
             return true;
         }
-
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.END);
-        return true;
     }
 
     @UiThread
@@ -112,37 +103,9 @@ public class GroupDetailActivity extends BaseActivity
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setDisplayShowTitleEnabled(false);  //actionBar 기본 타이틀 제거
-
+            ab.setDisplayHomeAsUpEnabled(true);  //홈 버튼 표시
+//            ab.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);  //홈 버튼 아이콘 변경
             tvToolbarGroupName.setText(mGroup.getName());
         }
     }
-
-    @UiThread
-    private void initContentList() {
-
-    }
-
-    @UiThread
-    private void initNavigationDrawer() {
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
-                } else {
-                    drawer.openDrawer(GravityCompat.END);
-                }
-            }
-        });
-
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-    }
-
 }

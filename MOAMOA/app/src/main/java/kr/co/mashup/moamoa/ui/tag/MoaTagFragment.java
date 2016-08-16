@@ -84,7 +84,7 @@ public class MoaTagFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.btn_menu_add:
+            case R.id.action_add:
                 new MaterialDialog.Builder(getActivity())
                         .title(R.string.moa_tag_add_title)
                         .inputType(InputType.TYPE_CLASS_TEXT)

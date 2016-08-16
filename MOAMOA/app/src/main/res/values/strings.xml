@@ -8,7 +8,7 @@
     <string name="moa_signup_nickname_hint">사용할 닉네임을 입력해주세요</string>
     <string name="moa_nogroup">현재 회원님이 속한 그룹이 없습니다</string>
 
-    <string name="toolbar_menu_add">ADD</string>
+    <string name="action_add">ADD</string>
 
     <string name="moa_group_add_title">새 그룹</string>
     <string name="moa_group_add_hint">새 그룹의 이름을 입력하세요</string>
@@ -28,6 +28,6 @@
     <string name="group_detail_member">그룹멤버</string>
     <string name="group_detail_member_add">멤버 추가하기</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_nav_open">Open</string>
 
 </resources>

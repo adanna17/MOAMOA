@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/moa_background_gray"
     android:fitsSystemWindows="true"
     tools:openDrawer="end">
 
@@ -17,7 +18,8 @@
         <include
             layout="@layout/app_bar_group_detail"/>
 
-        <include layout="@layout/content_group_detail"/>
+        <include
+            layout="@layout/content_group_detail"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

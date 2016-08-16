@@ -27,6 +27,8 @@ import kr.co.mashup.moamoa.data.Content;
 //Todo: List item click callback 구현
 public class MoaHomeFragment extends Fragment {
 
+    public static final String TAG = MoaHomeFragment.class.getSimpleName();
+
     @BindView(R.id.recyclerView_home)
     RecyclerView rvHome;
 
@@ -118,7 +120,6 @@ public class MoaHomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "item 선택", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         LinearLayoutManager llmHome = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvHome.setLayoutManager(llmHome);
