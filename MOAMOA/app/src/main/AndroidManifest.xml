@@ -65,6 +65,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kr.co.mashup.moamoa.ui.main.MoaMainActivity"/>
         </activity>
+        <activity
+            android:name=".ui.story.StoryDetailActivity"
+            android:label="@string/title_activity_story_detail"
+            android:parentActivityName=".ui.main.MoaMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kr.co.mashup.moamoa.ui.main.MoaMainActivity"/>
+        </activity>
     </application>
 
 </manifest>

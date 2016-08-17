@@ -1,5 +1,6 @@
 package kr.co.mashup.moamoa.ui.story;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.OnListItemListener;
 import kr.co.mashup.moamoa.common.SpacingHeaderItemDecoration;
 import kr.co.mashup.moamoa.data.Story;
+import kr.co.mashup.moamoa.ui.group.GroupDetailActivity;
 import kr.co.mashup.moamoa.ui.home.SpacingItemDecoration;
 
 public class MoaStoryFragment extends Fragment {
@@ -69,7 +71,10 @@ public class MoaStoryFragment extends Fragment {
         mStoryListAdapter.setOnListItemListener(new OnListItemListener<Story>() {
             @Override
             public void onListItemClick(Story item) {
-                //Todo: 스토리 상세로 이동
+                //스토리 상세로 이동
+                Intent intent = new Intent(getActivity(), StoryDetailActivity.class);
+                intent.putExtra(StoryDetailActivity.MOA_STORY, item);
+                startActivity(intent);
             }
         });
         rvStory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

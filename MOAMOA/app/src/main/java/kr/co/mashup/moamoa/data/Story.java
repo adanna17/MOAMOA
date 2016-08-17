@@ -1,9 +1,11 @@
 package kr.co.mashup.moamoa.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Dong on 2016-08-17.
  */
-public class Story {
+public class Story implements Serializable {
 
     String contentName;
     String groupName;
