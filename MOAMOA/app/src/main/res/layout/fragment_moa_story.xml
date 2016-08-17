@@ -1,15 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="kr.co.mashup.moamoa.ui.story.MoaStoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_story"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="Story framgment"/>
+        android:scrollbars="vertical"/>
 
-</FrameLayout>
+    <!--<TextView-->
+    <!--android:id="@+id/bottom_support"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="66dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:background="@color/moa_bottomnav_border"/>-->
+
+</RelativeLayout>
