@@ -4,28 +4,35 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.kakao.network.ErrorResult;
-import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.MeResponseCallback;
-import com.kakao.usermgmt.response.model.UserProfile;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.KakaoProfileInformation;
+import kr.co.mashup.moamoa.server.RetrofitSingleton;
+import kr.co.mashup.moamoa.server.ServerUser;
 import kr.co.mashup.moamoa.ui.main.MoaMainActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MoaNoGroupActivity extends AppCompatActivity {
 
-    private UserProfile userProfile;
+    public static final String TAG = MoaNoGroupActivity.class.getSimpleName();
+
+    //String userMoaId;
 
     @BindView(R.id.com_kakao_profileinformation)
     KakaoProfileInformation profileInformation;
 
-    @OnClick(R.id.btn_init_pass)
-    void ClickPass(){
+    @BindView(R.id.tv_nogroup_moaname)
+    TextView tvMoaName;
+
+    @OnClick(R.id.btn_init_newgroup)
+    void clickNewGroup(){
         final Intent intent = new Intent(getApplicationContext(), MoaMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
@@ -39,45 +46,31 @@ public class MoaNoGroupActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        initializeProfileView();
+        //initializeProfileView();
     }
 
-    private void initializeProfileView() {
+//    private void initializeProfileView() {
+//
+//        Intent intent = getIntent();
+//        userMoaId = intent.getExtras().getString("moaId");
+//
+//
+//        RetrofitSingleton retrofitSingleton = RetrofitSingleton.getInstance();
+//        Call<ServerUser> call = retrofitSingleton.getUserInfo(userMoaId);
+//
+//        call.enqueue(new Callback<ServerUser>() {
+//            @Override
+//            public void onResponse(Call<ServerUser> call, Response<ServerUser> response) {
+//                tvMoaName.setText("현재 '" + response.body().getUser_profile_name() + "' 님이 속한 그룹이 없습니다.");
+//                profileInformation.setProfileURL(response.body().getUser_profile_image());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServerUser> call, Throwable t) {
+//                Toast.makeText(MoaNoGroupActivity.this, R.string.moa_error,Toast.LENGTH_SHORT).show();
+//                Log.v(TAG ," " + t.getMessage());
+//            }
+//        });
+//    }
 
-        // 로그인 하면서 caching되어 있는 profile를 그린다.
-        userProfile = UserProfile.loadFromCache();
-        if (userProfile != null) {
-            profileInformation.setUserProfile(userProfile);
-        }
-
-        UserManagement.requestMe(new MeResponseCallback() {
-            @Override
-            public void onSessionClosed(ErrorResult errorResult) {
-                Log.e("TAG", "Session closed");
-            }
-
-            @Override
-            public void onNotSignedUp() {
-                Log.e("TAG", "No signedUp");
-            }
-
-            @Override
-            public void onSuccess(UserProfile result) {
-                applyTalkProfileToView(result);
-            }
-        });
-    }
-
-    // profile view에서 talk profile을 update 한다.
-    private void applyTalkProfileToView(final UserProfile userProfile) {
-        if (profileInformation != null) {
-            if (userProfile != null) {
-                profileInformation.setUserProfile(userProfile);
-            }
-            final String profileImageURL = userProfile.getProfileImagePath();
-            if (profileImageURL != null)
-                profileInformation.setProfileURL(profileImageURL);
-
-        }
-    }
 }

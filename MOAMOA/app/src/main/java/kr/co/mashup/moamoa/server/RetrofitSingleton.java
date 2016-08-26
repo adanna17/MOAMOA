@@ -35,7 +35,7 @@ public class RetrofitSingleton {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.30.32.54:3000/")
+                .baseUrl("http://192.168.0.14:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -69,6 +69,10 @@ public class RetrofitSingleton {
 
     public  Call<ServerResult> getRegisterUser(String kakaoID, String kakaoProfileImage, String moaId, String moaNickname){
         return service.registerUser(kakaoID,kakaoProfileImage, moaId, moaNickname);
+    }
+
+    public  Call<ServerUser> getUserInfo(String moamoaId){
+        return service.UserInfo(moamoaId);
     }
 
 }

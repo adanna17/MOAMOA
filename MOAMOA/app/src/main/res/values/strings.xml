@@ -10,4 +10,6 @@
     <string name="moa_signup_id_hint">사용할 아이디를 입력해주세요</string>
     <string name="moa_signup_nickname_hint">사용할 닉네임을 입력해주세요</string>
     <string name="moa_nogroup">현재 회원님이 속한 그룹이 없습니다</string>
+    <string name="moa_error">오류가 발생하였습니다. \n다시 시도해주세요.</string>
+    <string name="moa_new_group">새 그룹의 이름을 입력하세요.</string>
 </resources>

@@ -1,5 +1,6 @@
 package kr.co.mashup.moamoa.ui.main;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -34,6 +35,8 @@ public class MoaMainActivity extends AppCompatActivity {
     private AHBottomNavigation bottomNavigation;
     private ArrayList<AHBottomNavigationItem> bottomNavigationItems = new ArrayList<>();
 
+    //String userMoaId;
+
     @BindColor(R.color.moa_blue)
     int accentcolor;
 
@@ -50,6 +53,10 @@ public class MoaMainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         initUI();
+
+//        Intent intent = getIntent();
+//        userMoaId = intent.getExtras().getString("moaId");
+//        Toast.makeText(MoaMainActivity.this, userMoaId, Toast.LENGTH_SHORT).show();
 
     }
 

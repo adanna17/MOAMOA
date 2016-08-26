@@ -38,6 +38,7 @@
         </activity>
 
         <activity android:name=".ui.init.MoaNoGroupActivity"/>
+
         <activity android:name=".ui.main.MoaMainActivity" />
     </application>
 

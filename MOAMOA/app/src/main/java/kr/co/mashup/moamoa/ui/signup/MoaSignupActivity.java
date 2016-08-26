@@ -33,6 +33,7 @@ public class MoaSignupActivity extends AppCompatActivity {
     public static final String TAG = MoaSignupActivity.class.getSimpleName();
 
     private UserProfile mUserProfile;
+    private  String profileImageURL;
     private boolean mCheckRepeat;
 
     @BindView(R.id.com_kakao_profileinformation)
@@ -54,15 +55,17 @@ public class MoaSignupActivity extends AppCompatActivity {
             call.enqueue(new Callback<ServerResult>() {
                 @Override
                 public void onResponse(Call<ServerResult> call, Response<ServerResult> response) {
-                    if (response.body().getmResult()){
+                    String result = response.body().getResultStatus();
+                    if (result.equals("fail")){
                         idCheckFail();
-                    }else{
+                    }else if (result.equals("success")){
                         idCheckSuccess();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ServerResult> call, Throwable t) {
+                    Toast.makeText(MoaSignupActivity.this, R.string.moa_error,Toast.LENGTH_SHORT).show();
                     Log.v(TAG ," " + t.getMessage());
                 }
             });
@@ -76,22 +79,24 @@ public class MoaSignupActivity extends AppCompatActivity {
         if (mCheckRepeat){
             RetrofitSingleton retrofitSingleton = RetrofitSingleton.getInstance();
             Call<ServerResult> call = retrofitSingleton.getRegisterUser(
-                    String.valueOf(mUserProfile.getId()), mUserProfile.getProfileImagePath(),
+                    String.valueOf(mUserProfile.getId()), profileImageURL,
                     etMoaId.getText().toString(), etNickname.getText().toString());
 
             call.enqueue(new Callback<ServerResult>() {
                 @Override
                 public void onResponse(Call<ServerResult> call, Response<ServerResult> response) {
-                    if (response.body().getmResult()){
+                    String result = response.body().getResultStatus();
+                    if (result.equals("success")){
                         Toast.makeText(MoaSignupActivity.this, R.string.moa_signup_finish_success, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MoaSignupActivity.this, MoaNoGroupActivity.class));
+                        Intent intent = new Intent(MoaSignupActivity.this, MoaNoGroupActivity.class);
+                        intent.putExtra("moaId", etMoaId.getText().toString());
+                        startActivity(intent);
                         finish();
-                    }else {
-                        Toast.makeText(MoaSignupActivity.this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
                 public void onFailure(Call<ServerResult> call, Throwable t) {
+                    Toast.makeText(MoaSignupActivity.this, R.string.moa_error,Toast.LENGTH_SHORT).show();
                     Log.v(TAG ," " + t.getMessage());
                 }
             });
@@ -126,7 +131,7 @@ public class MoaSignupActivity extends AppCompatActivity {
 
     private void applyTalkProfileToView(final KakaoTalkProfile kakaoTalkProfile) {
         if (mProfileInformation != null) {
-            final String profileImageURL = kakaoTalkProfile.getProfileImageUrl();
+            profileImageURL = kakaoTalkProfile.getProfileImageUrl();
             if (profileImageURL != null)
                 mProfileInformation.setProfileURL(profileImageURL);
 
@@ -140,7 +145,7 @@ public class MoaSignupActivity extends AppCompatActivity {
 
         char chrInput;
 
-        if (textInput.length() > 0){
+        if (textInput.length() > 3){
             for (int i = 0; i < textInput.length(); i++) {
 
                 chrInput = textInput.charAt(i); // 입력받은 텍스트에서 문자 하나하나 가져와서 체크

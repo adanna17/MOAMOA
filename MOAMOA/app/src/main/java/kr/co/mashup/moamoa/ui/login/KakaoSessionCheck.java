@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -74,15 +75,19 @@ public class KakaoSessionCheck extends AppCompatActivity{
                 call.enqueue(new Callback<ServerResult>() {
                     @Override
                     public void onResponse(Call<ServerResult> call, Response<ServerResult> response) {
-                        if (response.body().getmResult()){
-                            redirectMainActivity();
-                        }else{
+                        String result = response.body().getResultStatus();
+                        if (result.equals("new")){
                             redirectSignupActivity();
+                        }else{
+                            Intent intent = new Intent(KakaoSessionCheck.this, MoaMainActivity.class);
+                            intent.putExtra("moaId", result);
+                            startActivity(intent);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ServerResult> call, Throwable t) {
+                        Toast.makeText(KakaoSessionCheck.this, R.string.moa_error,Toast.LENGTH_SHORT).show();
                         Log.v(TAG ," " + t.getMessage());
                     }
                 });
@@ -97,11 +102,6 @@ public class KakaoSessionCheck extends AppCompatActivity{
 
     private void redirectSignupActivity() {
         startActivity(new Intent(KakaoSessionCheck.this, MoaSignupActivity.class));
-        finish();
-    }
-
-    private void redirectMainActivity() {
-        startActivity(new Intent(KakaoSessionCheck.this, MoaMainActivity.class));
         finish();
     }
 
