@@ -23,7 +23,7 @@
             android:layout_width="90dp"
             android:layout_height="15dp"
             android:layout_gravity="center"
-            android:src="@drawable/acionbar_moa_title"/>
+            android:src="@drawable/toolbar_moa_title"/>
 
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.AppBarLayout>

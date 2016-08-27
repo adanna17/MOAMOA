@@ -26,6 +26,6 @@ public interface RetrofitService {
 
     @FormUrlEncoded
     @POST("user/info")
-    Call<ServerUser> UserInfo(@Field("user_moa_id") String moamoaId);
+    Call<User> getUserInfo(@Field("user_moa_id") String moamoaId);
 
 }

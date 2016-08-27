@@ -37,22 +37,28 @@ public class RetrofitSingleton {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.14:3000/")
-                .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         service = retrofit.create(RetrofitService.class);
-
     }
 
+    /**
+     * HTTP Client 생성
+     * @param httpLoggingInterceptor 로깅을 위해
+     * @return HTTP Logging Interceptor가 들어간 OkHttpClient 클래스
+     */
     private OkHttpClient makeOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor){
         return new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
     }
 
-    // http loging
+    /**
+     * http loging 클래스 생성
+     * @return Http Logging Interceptor 클래스 생성
+     */
     private HttpLoggingInterceptor makeLoggingInterceptor(){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor()
                 .setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY
@@ -72,8 +78,8 @@ public class RetrofitSingleton {
         return service.registerUser(kakaoID,kakaoProfileImage, moaId, moaNickname);
     }
 
-    public  Call<ServerUser> getUserInfo(String moamoaId){
-        return service.UserInfo(moamoaId);
+    public  Call<User> getUserInfo(String moamoaId){
+        return service.getUserInfo(moamoaId);
     }
 
 }

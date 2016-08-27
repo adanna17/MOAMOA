@@ -1,9 +1,17 @@
 package kr.co.mashup.moamoa.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+
     String kakaoId;
+
+    @SerializedName("user_profile_image")
     String profileImage;
+
     String moamoaId;
+
+    @SerializedName("user_profile_name")
     String nickname;
 
     public User(String kakaoId, String profileImage, String moamoaId, String nickname) {

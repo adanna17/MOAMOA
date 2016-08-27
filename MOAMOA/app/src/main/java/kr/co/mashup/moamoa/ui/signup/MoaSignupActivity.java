@@ -42,32 +42,32 @@ public class MoaSignupActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_signup_repeat)
     void Check_ID_repeat() {
-        if (checkInputOnlyNumberAndAlphabet(editText_moaid.getText().toString())){
+        if (checkInputOnlyNumberAndAlphabet(editText_moaid.getText().toString())) {
             check_text = true;
 
             RetrofitSingleton retrofitSingleton = RetrofitSingleton.getInstance();
-            Call<User> call = retrofitSingleton.getUserInfo("564574","http://mashup.co.kr","zzzzzz","김정민");
+//            Call<User> call = retrofitSingleton.getUserInfo("564574", "http://mashup.co.kr", "zzzzzz", "김정민");
 
-            call.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    Log.v(TAG ," " + response.body().getNickname());
-
-                }
-
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    Log.v(TAG ," " + t.getMessage());
-                }
-            });
-        }else{
-            Toast.makeText(MoaSignupActivity.this, "이미 사용중이거나 사용할 수 없는 아이디입니다.", Toast.LENGTH_SHORT).show();
-            editText_moaid.setText("");
+//            call.enqueue(new Callback<User>() {
+//                @Override
+//                public void onResponse(Call<User> call, Response<User> response) {
+//                    Log.v(TAG, " " + response.body().getNickname());
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<User> call, Throwable t) {
+//                    Log.v(TAG, " " + t.getMessage());
+//                }
+//            });
+//        } else {
+//            Toast.makeText(MoaSignupActivity.this, "이미 사용중이거나 사용할 수 없는 아이디입니다.", Toast.LENGTH_SHORT).show();
+//            editText_moaid.setText("");
         }
     }
 
     @OnClick(R.id.btn_signup_finish)
-    void Click_signup_finish(){
+    void Click_signup_finish() {
 //        if (check_text){
 //            Toast.makeText(MoaSignupActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
 //            final Intent intent = new Intent(getApplicationContext(), MoaNoGroupActivity.class);
@@ -133,26 +133,24 @@ public class MoaSignupActivity extends AppCompatActivity {
 
         char chrInput;
 
-        if (textInput.length() > 0){
+        if (textInput.length() > 0) {
             for (int i = 0; i < textInput.length(); i++) {
 
                 chrInput = textInput.charAt(i); // 입력받은 텍스트에서 문자 하나하나 가져와서 체크
 
                 if (chrInput >= 0x61 && chrInput <= 0x7A) {
                     // 영문(소문자) OK!
-                    Log.v("글자검사","소문자입니다.");
-                }
-                else if (chrInput >= 0x30 && chrInput <= 0x39) {
+                    Log.v("글자검사", "소문자입니다.");
+                } else if (chrInput >= 0x30 && chrInput <= 0x39) {
                     // 숫자 OK!
-                    Log.v("글자검사","숫자입니다.");
-                }
-                else {
+                    Log.v("글자검사", "숫자입니다.");
+                } else {
                     return false;   // 영문자도 아니고 숫자도 아님!
                 }
             }
             return true;
         }
-        return  false;
+        return false;
     }
 
     public abstract class KakaoTalkResponseCallback<T> extends TalkResponseCallback<T> {
@@ -188,7 +186,7 @@ public class MoaSignupActivity extends AppCompatActivity {
         @Override
         public void onDidEnd() {
 
-           // cancelWaitingDialog();
+            // cancelWaitingDialog();
         }
     }
 

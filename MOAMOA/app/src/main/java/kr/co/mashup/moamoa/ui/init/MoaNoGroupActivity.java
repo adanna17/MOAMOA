@@ -1,23 +1,16 @@
 package kr.co.mashup.moamoa.ui.init;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import kr.co.mashup.moamoa.R;
 import kr.co.mashup.moamoa.common.KakaoProfileInformation;
-import kr.co.mashup.moamoa.server.RetrofitSingleton;
-import kr.co.mashup.moamoa.server.ServerUser;
 import kr.co.mashup.moamoa.ui.main.MoaMainActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MoaNoGroupActivity extends AppCompatActivity {
 
