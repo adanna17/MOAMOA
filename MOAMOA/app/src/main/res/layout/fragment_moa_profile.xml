@@ -4,10 +4,63 @@
     android:layout_height="match_parent"
     tools:context="kr.co.mashup.moamoa.ui.profile.MoaProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="230dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/white">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="김정민"
+            android:id="@+id/profile_moa_name"
+            android:textSize="15sp"
+            android:textColor="@color/moa_text_main"
+            android:layout_below="@+id/com_kakao_profileinformation"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="roqte1017"
+            android:id="@+id/profile_moa_id"
+            android:textSize="11sp"
+            android:textColor="@color/moa_text_description"
+            android:layout_below="@+id/profile_moa_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp" />
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:id="@+id/btn_profile_edit"
+            android:src="@drawable/btn_edit"
+            android:layout_marginLeft="4dp"
+            android:layout_alignBottom="@+id/profile_moa_name"
+            android:layout_alignTop="@id/profile_moa_name"
+            android:layout_toRightOf="@+id/profile_moa_name"
+            android:layout_below="@+id/com_kakao_profileinformation"/>
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:id="@+id/btn_profile_setting"
+            android:src="@drawable/btn_setting"
+            android:layout_alignTop="@+id/com_kakao_profileinformation"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="17dp"
+            android:layout_marginEnd="17dp" />
+
+        <kr.co.mashup.moamoa.common.KakaoProfileInformation
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/com_kakao_profileinformation"
+            android:layout_marginTop="14dp"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+    
 </FrameLayout>

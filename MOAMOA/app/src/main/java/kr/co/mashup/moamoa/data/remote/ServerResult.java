@@ -1,13 +1,13 @@
 package kr.co.mashup.moamoa.data.remote;
 
 public class ServerResult {
-    private boolean bResult;
+    private String resultStatus;
 
-    public ServerResult(boolean mResult) {
-        this.bResult = mResult;
+    public ServerResult(String resultStatus) {
+        this.resultStatus = resultStatus;
     }
 
-    public boolean getmResult() {
-        return bResult;
+    public String getResultStatus() {
+        return resultStatus;
     }
 }

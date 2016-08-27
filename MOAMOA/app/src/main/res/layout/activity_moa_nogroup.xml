@@ -30,12 +30,22 @@
             android:layout_marginTop="35dp"/>
 
         <TextView
+            android:id="@+id/tv_nogroup_moaname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="82dp"
             android:text="@string/moa_nogroup"
             android:textColor="@color/moa_text_main"
             android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/edit_signup_username"
+            style="@style/MoaMoa_EditText"
+            android:layout_marginTop="30dp"
+            android:padding="8dp"
+            android:background="@drawable/moa_blue_underline"
+            android:maxLength="10"
+            android:hint="@string/moa_new_group" />
 
         <Button
             android:id="@+id/btn_init_newgroup"

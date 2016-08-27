@@ -9,15 +9,23 @@ import retrofit2.http.POST;
 public interface RetrofitService {
 
     @FormUrlEncoded
-    @POST("register/repeat")
-    Call<User> userInfo(
-            @Field("kakaoId") String kakaoID,
-            @Field("profileImage") String profileImage,
-            @Field("moamoaId") String moamoaId,
-            @Field("nickname") String nickname);
+    @POST("user/login")
+    Call<ServerResult> checkUser(@Field("user_kaokao_id") String kakaoID);
 
     @FormUrlEncoded
-    @POST("login")
-    Call<ServerResult> checkUser(@Field("kakaoId") String kakaoID);
+    @POST("user/register/repeat")
+    Call<ServerResult> userRepeat(@Field("user_moa_id") String moamoaId);
+
+    @FormUrlEncoded
+    @POST("user/register/submit")
+    Call<ServerResult> registerUser(
+            @Field("user_kaokao_id") String kakaoID,
+            @Field("user_profile_image") String kakaoProfileImage,
+            @Field("user_moa_id") String moaId,
+            @Field("user_profile_name") String moaNickname);
+
+    @FormUrlEncoded
+    @POST("user/info")
+    Call<ServerUser> UserInfo(@Field("user_moa_id") String moamoaId);
 
 }
