@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginTop="@dimen/moa_list_first_margin"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="16dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="kr.co.mashup.moamoa.ui.story.StoryDetailActivity"
+    android:padding="12dp"
+
+    tools:context="kr.co.mashup.moamoa.ui.story.StoryEditFragment"
     tools:showIn="@layout/activity_story_detail">
 
     <TextView
@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:text="The 'moon' nobody noticed for a century"
-        android:textColor="@color/moa_text_main"/>
-
+        android:textColor="@color/moa_text_main"
+        android:textSize="14sp"/>
 
     <!--리사이클러뷰로 변경-->
     <LinearLayout
@@ -34,32 +34,38 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:text="프로젝트3팀"
-            android:textColor="@color/moa_text_hint"/>
+            android:textColor="@color/moa_text_hint"
+            android:textSize="11sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#News"
-            android:textColor="@color/moa_text_hint"/>
+            android:textColor="@color/moa_text_hint"
+            android:textSize="11sp"/>
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView_content_highlight"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="16dp"
-        android:background="#d9c7a4"
-        android:text="What aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+        android:background="#f3ebbb"
+        android:padding="4dp"
+        android:paddingBottom="9dp"
+        android:paddingTop="7dp"
+        android:text="What aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        android:textColor="#515151"
+        android:textSize="12sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:background="@color/moa_background_gray"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,51 +74,26 @@
             android:text="나의 의견"
             android:textColor="@color/moa_text_main"/>
 
-        <TextView
-            android:id="@+id/textView_story_opinion"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editText_story_opinion"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="영어는 너무 어렵다."
+            android:textSize="12sp"
             android:textColor="@color/moa_text_description"/>
 
-        <TextView
-            android:id="@+id/textView_story_opinion_update_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="수정/삭제"
-            android:textColor="@color/moa_text_hint"/>
-
     </LinearLayout>
 
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/ll_story_opinion_update"
+    <Button
+        android:id="@+id/button_story_save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!--이미지 버튼으로 변경-->
-        <Button
-            android:id="@+id/button_story_modify"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="수정하기"
-            android:textColor="@color/moa_blue"
-            android:textSize="15sp"/>
-
-        <Button
-            android:id="@+id/button_story_delete"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="삭제하기"
-            android:textColor="@color/moa_blue"
-            android:textSize="15sp"/>
-
-    </LinearLayout>
-
+        android:layout_height="53dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/btn_background"
+        android:text="저장하기"
+        android:textColor="@color/moa_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
 
 </LinearLayout>

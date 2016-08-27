@@ -3,21 +3,18 @@ package kr.co.mashup.moamoa.ui.story;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.UiThread;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
-import butterknife.OnClick;
 import kr.co.mashup.moamoa.R;
-import kr.co.mashup.moamoa.data.Group;
 import kr.co.mashup.moamoa.data.Story;
 import kr.co.mashup.moamoa.ui.base.BaseActivity;
 
@@ -29,19 +26,9 @@ public class StoryDetailActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @BindView(R.id.textView_content_name)
-    TextView tvContentName;
-
-    @BindView(R.id.textView_content_highlight)
-    TextView tvContentHighlight;
-
-    @BindView(R.id.textView_story_opinion)
-    TextView tvStoryOpinion;
-
-    @BindView(R.id.ll_story_opinion_update)
-    LinearLayout llStoryOpinionUpdate;
-
     Story mStory;
+
+    FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +37,38 @@ public class StoryDetailActivity extends BaseActivity {
         Intent receiveIntent = getIntent();
         mStory = (Story) receiveIntent.getSerializableExtra(MOA_STORY);
 
+        //Todo: 지우기
+        dummyData();  //Todo: 지우기
+
         initToolbar();
+
+        mFragmentManager = getSupportFragmentManager();
+
+        //초기 화면 지정
+        Fragment fragment = mFragmentManager.findFragmentById(R.id.fl_container_fragment);
+        if (fragment == null) {
+            StoryDetailFragment storyDetailFragment = StoryDetailFragment.newInstance(mStory);
+
+            mFragmentManager.beginTransaction()
+                    .add(R.id.fl_container_fragment, storyDetailFragment, StoryDetailFragment.TAG)
+                    .commit();
+        }
     }
 
     @Override
-    public int getLayoutID() {
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Override
+    public int getLayoutId() {
         return R.layout.activity_story_detail;
     }
 
@@ -69,24 +83,62 @@ public class StoryDetailActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.textView_story_opinion_update_show)
-    public void onClickOpinionUpdateShow() {
-        if (llStoryOpinionUpdate.getVisibility() == View.VISIBLE) {
-            llStoryOpinionUpdate.setVisibility(View.GONE);
-        } else {
-            llStoryOpinionUpdate.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @OnClick(R.id.button_story_modify)
+    //    @OnClick(R.id.button_story_modify)
     public void stroyOpinionModify() {
         Toast.makeText(StoryDetailActivity.this, "modify", Toast.LENGTH_SHORT).show();
         //Todo: 토스트 삭제. 수정 기능 구현
     }
 
-    @OnClick(R.id.button_story_delete)
+    //    @OnClick(R.id.button_story_delete)
     public void stroyOpinionDelete() {
         Toast.makeText(StoryDetailActivity.this, "delete", Toast.LENGTH_SHORT).show();
         //Todo: 토스트 삭제. 삭제 기능 구현
     }
+
+    /**
+     * StoryDetailFragment에서 수정하기 버튼 클릭했을 때
+     * 마이스토리의 수정(나의 의견)을 시작한다.
+     *
+     * @param storyEditStartEvent
+     */
+    @Subscribe
+    public void onEvent(StoryEditStartEvent storyEditStartEvent) {
+        //ui 변경 및 데이터 전달
+        mFragmentManager.beginTransaction()
+                .replace(R.id.fl_container_fragment, StoryEditFragment.newInstance(storyEditStartEvent.getStory()), StoryEditFragment.TAG)
+                .commit();
+    }
+
+    /**
+     * StoryDetailFragment에서 삭제하기 버튼을 클릭했을 때
+     * 마
+     * @param storyDeleteEvent
+     */
+    @Subscribe
+    public void onEvent(StoryDeleteEvent storyDeleteEvent){
+        //Todo: DB에서 삭제 and UI update
+
+    }
+
+    /**
+     * StoryEditFragment에서 저장하기 버튼 클릭했을 때
+     * 마이스토리의 수정 내용(나의 의견)을 DB에 반영한다.
+     *
+     * @param storyEditResultEvent
+     */
+    @Subscribe
+    public void onEvent(StoryEditResultEvent storyEditResultEvent) {
+        //ui 변경 및 데이터 전달
+        mFragmentManager.beginTransaction()
+                .replace(R.id.fl_container_fragment, StoryDetailFragment.newInstance(storyEditResultEvent.getStory()), StoryDetailFragment.TAG)
+                .commit();
+        //Todo: Local, Remote DB에 반영
+    }
+
+    //Todo: 지우기
+    private void dummyData(){
+        mStory.setMyOpinion("영어는 너무 어려워");
+        mStory.setContentHighlight("content highlight");
+    }
+
 }

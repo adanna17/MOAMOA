@@ -9,6 +9,7 @@
     <color name="moa_text_main">#232323</color>
     <color name="moa_text_description">#919191</color>
     <color name="moa_text_hint">#b4b4b4</color>
+    <color name="story_text_gray">#acacad</color>
 
     <color name="moa_background_gray">#D8D8D8</color>
     <color name="moa_gradient_start">#75e0d1</color>

@@ -11,6 +11,10 @@
 
     <include layout="@layout/app_bar_main"/>
 
-    <include layout="@layout/content_story_detail"/>
+    <FrameLayout
+        android:id="@+id/fl_container_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -53,7 +53,7 @@ public class MoaMainActivity extends BaseActivity {
     }
 
     @Override
-    public int getLayoutID() {
+    public int getLayoutId() {
         return R.layout.activity_moa_main;
     }
 
